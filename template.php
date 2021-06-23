@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<title>Poggo Animation</title>
+
 <head>
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
