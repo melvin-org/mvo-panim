@@ -1,19 +1,26 @@
 /* header css */
 
 @font-face {
-  font-family: "Basic Commercial";
+  font-family: "TitanOne";
   font-style: normal;
   font-weight: 400;
-  src: url(Basic-Commercial.ttf) format("truetype");
+  src: url(TitanOne-Regular.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: "Basic Commercial";
+    font-style: normal;
+    font-weight: 400;
+    src: url(Basic-Commercial.ttf) format("truetype");
 }
 
 /* Add a white background color to the top navigation */
 .topnav {
-  padding: 20px 0;
+  padding: 50px 0px;
   position: relative;
   overflow: hidden;
   background-color: #fff;
-  font-family:  "Basic Commercial", sans-serif;
+  font-family:  "TitanOne", sans-serif;
 }
 
 /* Style the links inside the navigation bar */
@@ -50,7 +57,7 @@
 .topnav-centered a {
   float: none;
   position: absolute;
-  top: 50%;
+  top: 0%;
   left: 50%;
   transform: translate(-50%, -50%);
 
@@ -88,7 +95,7 @@
   margin: 0;
   padding: 0;
   overflow: hidden;
-  font-family:  "Basic Commercial", sans-serif;
+  font-family:  "TitanOne", sans-serif;
 }
 
 .nav-table li {
@@ -133,6 +140,7 @@
 .footer .footer-content .footer-section{
 	flex: 1;
 	padding: 25px;
+	/*border: 1px solid white; to see the section split */
 }
 
 .footer .footer-bottom {
@@ -197,12 +205,5 @@ html, body{
 .page-wrapper{
 	min-height:100%;
 }
-/* 
-.sticky {
-  position: fixed;
-  top: 0;
-  width: 100%;
-} */
-
 
 /* insert other css below */
