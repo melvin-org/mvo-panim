@@ -11,7 +11,7 @@
 
   <!-- Centered link -->
   <div class="topnav-centered">
-    <a href="#home" class="active"><img src="poggo.png" alt="poggo" style="padding:20px 0; margin-top:120px"></a>
+    <a href="#home" class="active"><img src="poggo.png" alt="poggo" style="padding:20px 0; margin-top:140px"></a>
   </div>
 
   <!-- Right-aligned links -->
