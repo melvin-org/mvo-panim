@@ -14,6 +14,13 @@
     src: url(Basic-Commercial.ttf) format("truetype");
 }
 
+@font-face {
+  font-family: "Quicksand";
+  font-style: normal;
+  font-weight: 400;
+  src: url(Quicksand-Regular.ttf) format("truetype");
+}
+
 /* Add a white background color to the top navigation */
 .topnav {
   padding: 60px 0px;
@@ -207,3 +214,37 @@ html, body{
 }
 
 /* insert other css below */
+
+.quicksand-font {
+  font-family: "Quicksand";
+}
+
+.continue-shopping {
+  cursor: pointer; 
+  color: #4BB7D4;
+}
+
+.remove-button {
+  color: #4BB7D4;
+  cursor: pointer;
+}
+
+.checkout-button {
+  background-color: #4BB7D4;
+  padding: 20px 40px 20px 40px;
+  color: white;
+  border-radius: 3px;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.checkout-button:hover {
+  background-color: #4BB7D4;
+  padding: 19px 40px 21px 40px;
+  color: white;
+  border-radius: 3px;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
