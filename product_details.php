@@ -16,7 +16,7 @@
     <div class="page-wrapper">
 
         <!-- START BELOW HERE -->
-        <div class="product-details" style="display: flex; width: 100%;">
+        <div class="quicksand-font" style="display: flex; width: 100%;">
             <div style="width: 30%; text-align: center;">
                 <?php
                 for ($i = 0; $i < 5; $i++) {
@@ -37,7 +37,7 @@
             <div style="width: 40%; margin: 30px 30px 30px 50px; padding: 20px;">
                 <div style="display: block; margin-bottom: 10px;">
                     <?php
-                    echo '<span style="font-size: 24px; font-family: Quicksand;"><b>Product Name</b></span>';
+                    echo '<span style="font-size: 24px;"><b>Product Name</b></span>';
                     ?>
                 </div>
                 <div style="display: block; margin-bottom: 30px;">
@@ -47,15 +47,15 @@
                 </div>
                 <?php
                 $productsize = array('Large' => 'large', 'Medium' => 'medium', 'Small' => 'small');
-                    if(count($productsize) > 0){
-                        echo '<div style="display: block; margin: 10px 0 10px 0;">';
-                        echo '<select id="product-size" name="product-size" style="width: 400px; height: 40px; font-size: 20px;">';
-                        foreach($productsize as $size => $keysize) {
-                            echo '<option value="'.$keysize.'">'.$size.'</option>';
-                        }
-                        echo '</select>';
-                        echo '</div>';
+                if (count($productsize) > 0) {
+                    echo '<div style="display: block; margin: 10px 0 10px 0;">';
+                    echo '<select id="product-size" name="product-size" style="width: 400px; height: 40px; font-size: 20px;">';
+                    foreach ($productsize as $size => $keysize) {
+                        echo '<option value="' . $keysize . '">' . $size . '</option>';
                     }
+                    echo '</select>';
+                    echo '</div>';
+                }
                 ?>
                 <!-- <div style="display: block; margin: 10px 0 10px 0;">
                     <select id="product-size" name="product-size" style="width: 400px; height: 40px; font-size: 20px;">
@@ -78,9 +78,9 @@
                 <div style="display: block; margin: 50px 0 10px 0;">
                     <span style="font-size: 24px;"><b>Product Description</b></span>
                     <?php
-                        echo '<div style="padding: 10px; font-size: 20px;">';
-                        echo '- This is a very long product detail to mimic the original product detail This is a very long product detail to mimic the original product detail This is a very long product detail to mimic the original product detail This is a very long product detail to mimic the original product detail.';
-                        echo '</div>';
+                    echo '<div style="padding: 10px; font-size: 20px;">';
+                    echo '- This is a very long product detail to mimic the original product detail This is a very long product detail to mimic the original product detail This is a very long product detail to mimic the original product detail This is a very long product detail to mimic the original product detail.';
+                    echo '</div>';
                     ?>
                 </div>
                 <div style="display: block; margin-top: 50px;">
