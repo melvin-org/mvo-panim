@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 
-
 <?php
 include 'header.php';
 include 'sidebar.php';
@@ -26,6 +25,11 @@ $con = mysqli_connect("localhost", "admin", null, "pganim");
 
       <!-- Main content -->
       <section class="content">
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="box">
+              <div class="box-header with-border">
+                <a href="#" class="btn btn-primary btn-sm btn-flat" id="addproduct" ><i class="fa fa-plus"></i> New</a>
                 <div class="box-body">
                   <table class="table table-bordered">
                     <thead>
@@ -73,11 +77,40 @@ $con = mysqli_connect("localhost", "admin", null, "pganim");
                     </tbody>
                   </table>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
 
 
       </section>
     </div>
   </div>
+
+<?php
+include 'includes/product_modal.php';
+?>
+
+<script>
+
+document.getElementById('addproduct').addEventListener('click',
+function(){
+  document.querySelector('.bg-modal-add').style.display = 'flex';
+
+});
+
+document.querySelector('.close-add').addEventListener('click',
+function(){
+  document.querySelector('.bg-modal-add').style.display = 'none';
+});
+
+
+</script>
+
+
+
+
 
 </body>
 
