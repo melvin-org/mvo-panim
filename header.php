@@ -2,6 +2,7 @@
 <html>
 
 <head>
+<link rel = "icon" href = "images/poggo-icon.png" type = "image/x-icon">
 	<link rel="stylesheet" href="style.css" type="text/css">
 	<title>Poggo Animation</title>
 </head>
