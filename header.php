@@ -11,7 +11,7 @@
 
   <!-- Centered link -->
   <div class="topnav-centered">
-    <a href="#home" class="active"><img src="poggo.png" alt="poggo" style="padding:20px 0; margin-top:140px"></a>
+    <a href="home.php" class="active"><img src="poggo.png" alt="poggo" style="padding:20px 0; margin-top:140px"></a>
   </div>
 
   <!-- Right-aligned links -->
@@ -25,8 +25,8 @@
 <div class="nav-table">
 <ul class="nav-table">
 
-<li class="nav-table"><a href="#">Products</a></li>
-<li class="nav-table"><a href="#">Collections</a></li>
+<li class="nav-table"><a href="product_list.php">Products</a></li>
+<li class="nav-table"><a href="#collections">Collections</a></li>
 
 </ul>
 </div>
