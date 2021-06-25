@@ -34,7 +34,6 @@
         transform: rotate(45deg);
         cursor: pointer;
     }
-
 </style>
 
 <body>
@@ -72,7 +71,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="pcat" class="col-sm-1 control-label">Collection</label>
+                    <label for="pcollection" class="col-sm-1 control-label">Collection</label>
                     <div class="col-sm-5">
                         <select class="form-control" id="pcollection" name="pcollection" required>
                             <option value="" selected>- Select -</option>

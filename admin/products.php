@@ -37,7 +37,7 @@ $con = mysqli_connect("localhost", "admin", null, "pganim");
                       <th>Photo</th>
                       <th>Description</th>
                       <th>Category</th>
-                      <th>Collection ID</th>
+                      <th>Collection</th>
                       <th>Price</th>
                       <th>Stock Status</th>
                       <th>Tools</th>
@@ -48,28 +48,35 @@ $con = mysqli_connect("localhost", "admin", null, "pganim");
                       $query = "SELECT * FROM products";
                       $result = mysqli_query($con, $query);
 
+                      
+
                       if (mysqli_num_rows($result) == 0) {
                         echo "<p>No products found.</p>";
                       } else {
                         while ($row = mysqli_fetch_array($result)) {
-                          $image = (!empty($row['img'])) ? '../images/' . $row['img'] : '../images/noimage.jpg';
-                          echo "
-                          <tr>
+                          $collectionName2ID = $row['collection_id'];
+                          $query2 = "SELECT collection_name FROM collections WHERE collection_id = $collectionName2ID";
+                          $result2 = mysqli_query($con, $query2);
+                          foreach ($result2 as $collection) {
+                            $image = (!empty($row['img'])) ? '../images/' . $row['img'] : '../images/noimage.jpg';
+                            echo "
+                            <tr>
                             <td style='width:150px'>" . $row['product_name'] . "</td>
                             <td style='width:120px'>
                               <img src='" . $image . "' height='40px' width='40px'>
                             </td>
                             <td>" . $row['description'] . "</td>
                             <td style='width:100px'>" . $row['category'] . "</td>
-                            <td style='width:120px'>" . $row['collection_id'] . "</td>
+                            <td style='width:120px'>" . $collection['collection_name'] . "</td>
                             <td style='width:120px'>RM " . number_format($row['price'], 2) . "</td>
                             <td style='width:120px'>" . $row['stock_status'] . "</td>
                             <td style='width:150px'>
-                              <button class='btn btn-success btn-sm edit btn-flat' data-id='" . $row['product_id'] . "'><i class='fa fa-edit'></i> Edit</button>
-                              <button class='btn btn-danger btn-sm delete btn-flat' data-id='" . $row['product_id'] . "'><i class='fa fa-trash'></i> Delete</button>
+                            <a href ='products_edit.php?id=".$row['product_id']."'><button class='btn btn-success btn-sm editProdBtn btn-flat' data-id='" . $row['product_id'] . "'><i class='fa fa-edit'></i> Edit</button></a>
+                              <button onclick='deleteProd(".$row['product_id'].")' class='btn btn-danger btn-sm delete btn-flat' data-id='" . $row['product_id'] . "'><i class='fa fa-trash'></i> Delete</button>
                             </td>
-                          </tr>
-                        ";
+                           </tr>
+                            ";
+                          }
                         }
                       }
 
@@ -104,6 +111,15 @@ document.querySelector('.close-add').addEventListener('click',
 function(){
   document.querySelector('.bg-modal-add').style.display = 'none';
 });
+
+function deleteProd(productID){
+  var result = confirm("Are You Sure?");
+  if(result){
+    sessionStorage.setItem("deleteID",productID);
+    window.location = "products_delete.php?id="+productID;
+  }
+}
+
 
 
 </script>

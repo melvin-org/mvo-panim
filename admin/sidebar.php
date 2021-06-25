@@ -12,6 +12,8 @@
       <li><a href="customers.php"><i class="fa fa-users"></i> <span>Customers</span></a></li>
       <li><a href="products.php"><i class="fa fa-file-o"></i> <span>Product List</span></a></li>
       <li><a href="collections.php"><i class="fa fa-star"></i> <span>Collections</span></a></li>
+      <li class="header">OTHERS</li>
+      <li><a href="logout.php"><i class="fa fa-sign-out"></i> <span>Log Out</span></a></li>
       
     </ul>
   </section>

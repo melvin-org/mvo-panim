@@ -14,11 +14,13 @@ if (isset($_POST['add'])) {
     $createdAt =  date('Y-m-d H:i:s');
     $updatedAt =  date('Y-m-d H:i:s');
 
-    $queryCount = "select count(product_id) from products";
+    $queryCount = "select max(product_id) from products";
     $resultCount = mysqli_query($con, $queryCount);
     while ($row = mysqli_fetch_array($resultCount)) {
-        $pid = $row["count(product_id)"] + 1;
+        $pid = $row["max(product_id)"] + 1;
     }
+
+    
 
     if (!empty($filename)) {
         $ext = pathinfo($filename, PATHINFO_EXTENSION);

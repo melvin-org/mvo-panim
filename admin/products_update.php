@@ -1,0 +1,45 @@
+<?php
+
+$con = mysqli_connect("localhost", "admin", null, "pganim");
+
+if(isset($_POST['update'])){
+    $pid = $_POST['product_id'];
+    $pname = $_POST['product_name'];
+    $pcat = $_POST['category'];
+    $pcollection = $_POST['collection'];
+    $pprice = $_POST['price'];
+    $pdesc = $_POST['description'];
+    $pstock = $_POST['stock_status'];
+    $filename = $_FILES['photo']['name'];
+    date_default_timezone_set("Asia/Kuala_Lumpur");
+    $updatedAt =  date('Y-m-d H:i:s');
+
+    
+    if (!empty($filename)) {
+        $ext = pathinfo($filename, PATHINFO_EXTENSION);
+        $new_filename = $pname . '.' . $ext;
+        move_uploaded_file($_FILES['photo']['tmp_name'], '../images/' . $new_filename);
+    } else {
+        $new_filename = $_POST['photoName'];
+    }
+
+    $queryUpdate="update products set product_name='$pname',category='$pcat',collection_id='$pcollection',img='$new_filename',price='$pprice',description='$pdesc', stock_status='$pstock', updated_at = '$updatedAt' where product_id='$pid'";
+    $resultUpdate = mysqli_query($con, $queryUpdate);
+
+
+
+    // if ($resultUpdate> 0) {
+    //     echo "<script>alert('Product Successfully Updated')</script>";
+        
+
+    // } else echo "<script>alert('Product Failed to Upload')</script>";
+
+    
+    }
+
+    mysqli_close($con);
+
+    header('location: products.php');
+
+
+?>

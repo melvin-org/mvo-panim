@@ -107,3 +107,14 @@
     margin-left: 20px;
     padding-bottom: 40px;
 }
+
+/* product_edit.php photoUploadBtn*/
+label .photoUploadBtn{
+    background-color: blue;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor:pointer;
+    padding:5px 10px;
+    
+}

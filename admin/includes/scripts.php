@@ -4,8 +4,7 @@
 <script src="../bower_components/select2/dist/js/select2.full.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../dist/js/adminlte.min.js"></script>
-<!-- CK Editor -->
-<script src="../bower_components/ckeditor/ckeditor.js"></script>
+
 
 <script>
   $(function(){
