@@ -5,6 +5,7 @@
 <?php
 include 'header.php';
 include 'sidebar.php';
+include 'includes/session.php';
 
 $con = mysqli_connect("localhost", "admin", null, "pganim");
 
@@ -27,7 +28,7 @@ $resultCollection = mysqli_query($con, $queryCollection);
             <!-- Content Header (Page header) -->
             <section class="content-header">
                 <h1>
-                    Dashboard
+                    Edit Products
                 </h1>
                 <ol class="breadcrumb">
                     <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>

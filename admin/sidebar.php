@@ -1,5 +1,5 @@
 <aside class="main-sidebar">
-<img style="margin-left: 20px; padding-bottom: 40px;" src=images/poggo.png>
+<a href="dashboard.php"><img style="margin-left: 20px; padding-bottom: 40px;" src=images/poggo.png></a>
   <!-- sidebar: style can be found in sidebar.less -->
   <section class="sidebar">
   

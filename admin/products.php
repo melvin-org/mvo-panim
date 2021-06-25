@@ -4,6 +4,7 @@
 <?php
 include 'header.php';
 include 'sidebar.php';
+include 'includes/session.php';
 
 $con = mysqli_connect("localhost", "admin", null, "pganim");
 ?>
@@ -113,9 +114,8 @@ function(){
 });
 
 function deleteProd(productID){
-  var result = confirm("Are You Sure?");
+  var result = confirm("Are you sure you would like to DELETE this product?");
   if(result){
-    sessionStorage.setItem("deleteID",productID);
     window.location = "products_delete.php?id="+productID;
   }
 }

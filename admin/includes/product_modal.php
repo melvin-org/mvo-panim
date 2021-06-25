@@ -26,14 +26,7 @@
     }
 
 
-    .close-add {
-        position: absolute;
-        top: 0;
-        right: 14px;
-        font-size: 42px;
-        transform: rotate(45deg);
-        cursor: pointer;
-    }
+
 </style>
 
 <body>
@@ -42,8 +35,7 @@
     <div class="bg-modal-add">
 
         <div class="modal-content-add">
-            <div class="close-add">+</div>
-            <form class="form-horizontal" method="POST" action="products_add.php" enctype="multipart/form-data">
+            <form class="form-horizontal" method="POST" action="products_add.php" id="addform" enctype="multipart/form-data">
 
                 <?php
 
@@ -110,11 +102,12 @@
                     </div>
 
                 </div>
+                </form>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default btn-flat pull-left" data-dismiss="modal"><i class="fa fa-close"></i> Close</button>
-                    <button type="submit" class="btn btn-primary btn-flat" name="add"><i class="fa fa-save"></i> Add</button>
+                    <a href="products.php"><button type="button" class="btn btn-default btn-flat pull-left" data-dismiss="modal"><i class="fa fa-close"></i> Close</button></a>
+                    <button type="submit" form="addform" class="btn btn-primary btn-flat" name="add"><i class="fa fa-save"></i> Add</button>
                 </div>
-            </form>
+            
         </div>
     </div>
 

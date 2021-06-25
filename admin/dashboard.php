@@ -5,6 +5,7 @@
 <?php
 include 'header.php';
 include 'sidebar.php';
+include 'includes/session.php';
 
 $con = mysqli_connect("localhost", "admin", null, "pganim");
 ?>
@@ -37,20 +38,20 @@ $con = mysqli_connect("localhost", "admin", null, "pganim");
                                 <p>Total Orders</p>
 
                                 <?php
-                                $queryPay = "select count(payment_id) from payments";
-                                $resultPay = mysqli_query($con, $queryPay);
-                                while ($paymentRow = mysqli_fetch_array($resultPay)) {
-                                    $paymentCount = $paymentRow["count(payment_id)"];
+                                $queryOrders = "select count(order_id) from orders";
+                                $resultOrders = mysqli_query($con, $queryOrders);
+                                while ($ordersRow = mysqli_fetch_array($resultOrders)) {
+                                    $ordersCount = $ordersRow["count(order_id)"];
                                 }
 
-                                echo "<h3>".$paymentCount."</h3>";
+                                echo "<h3>".$ordersCount."</h3>";
                                 ?>
 
                             </div>
                             <div class="icon">
                                 <i class="fa fa-shopping-cart"></i>
                             </div>
-                            <a href="book.php" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                            <a href="orders.php" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                     <!-- ./col -->
@@ -74,7 +75,7 @@ $con = mysqli_connect("localhost", "admin", null, "pganim");
                             <div class="icon">
                                 <i class="fa fa-barcode"></i>
                             </div>
-                            <a href="student.php" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                            <a href="products.php" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                     <!-- ./col -->
@@ -99,7 +100,7 @@ $con = mysqli_connect("localhost", "admin", null, "pganim");
                             <div class="icon">
                                 <i class="fa fa-users"></i>
                             </div>
-                            <a href="return.php" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                            <a href="customers.php" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                     <!-- ./col -->
