@@ -12,11 +12,11 @@ if (isset($_POST['login'])) {
 
     $query = "select * from customers where email = '$email' AND password = '$password'";
     $result = mysqli_query($con, $query);
-
+    
     if ($result->num_rows > 0) {
         $row = mysqli_fetch_assoc($result);
         $_SESSION['first_name'] = $row['first_name'];
-        header("Location: home.php");
+        echo "<script language='javascript'>window.alert('logged in.');window.location='home.php';</script>";
     } else {
         echo "<script>alert('Whoops! Email or Password is Wrong.')</script>";
     }
@@ -42,7 +42,7 @@ if (isset($_POST['login'])) {
         <!-- START BELOW HERE -->
 
         <div class="quicksand-font" style="width: 100%;">
-            <form action="home.php" method="post">
+            <form action="" method="post">
                 <div style="width: 100%; padding-top: 20px; padding-bottom: 20px; text-align: center;">
                     <span style="font-size: 24px;">Login</span>
                 </div>
@@ -54,7 +54,7 @@ if (isset($_POST['login'])) {
                     </tr>
                     <tr>
                         <td style="width: 400px;">
-                            <input style="width: 100%; height: 30px;" type="text" id="loginEmail" placeholder="Email..." required>
+                            <input style="width: 100%; height: 30px;" type="text" id="loginEmail" name="loginEmail" placeholder="Email..." required>
                         </td>
                     </tr>
                     <tr>
@@ -67,7 +67,7 @@ if (isset($_POST['login'])) {
                     </tr>
                     <tr>
                         <td>
-                            <input style="width: 100%; height: 30px;" type="password" id="loginPassword" placeholder="Password..." required>
+                            <input style="width: 100%; height: 30px;" type="password" id="loginPassword" name="loginPassword" placeholder="Password..." required>
                         </td>
                     </tr>
                 </table>
