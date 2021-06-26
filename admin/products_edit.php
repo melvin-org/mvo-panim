@@ -15,7 +15,8 @@ $query = "SELECT * FROM products where product_id = '$id'";
 $result = mysqli_query($con, $query);
 $queryCollection = "SELECT * FROM collections";
 $resultCollection = mysqli_query($con, $queryCollection);
-
+$queryCategory = "SELECT * FROM categories";
+$resultCategory = mysqli_query($con, $queryCategory);
 
 
 ?>
@@ -54,7 +55,17 @@ $resultCollection = mysqli_query($con, $queryCollection);
                         echo "<input type='hidden' name='product_id' value='".$id."'>";
                         echo "<div class='form-group'>";
                         echo "<label for='product_name' class='col-sm-1 control-label'>Product Name: </label><div class='col-sm-3'><input type='text' class='form-control' id ='product_name' name='product_name' value='" . $row['product_name'] . "'></div>";
-                        echo "<label for='category' class='col-sm-1 control-label'>Category: </label><div class='col-sm-3'><input type='text' class='form-control' id ='category' name='category' value='" . $row['category'] . "' ></div>";
+                        echo "<label for='category' class='col-sm-1 control-label'>Category: </label><div class='col-sm-3'><select class='form-control' id='category' name='category' required>";
+                        foreach ($resultCategory as $category) {
+                            if($row['category_id'] == $category['category_id']){
+                                echo "<option value='" . $category['category_id'] . "' selected>" . $category['category_name'] . "</option>"; 
+
+                            } else{
+                                echo "<option value='" . $category['category_id'] . "'>" . $category['category_name'] . "</option>"; 
+
+                            }
+                        }               
+                        echo "</select></div>";         
                         echo "</div>";
 
                         echo "<div class='form-group'>";

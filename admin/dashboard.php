@@ -44,7 +44,7 @@ $con = mysqli_connect("localhost", "admin", null, "pganim");
                                     $ordersCount = $ordersRow["count(order_id)"];
                                 }
 
-                                echo "<h3>".$ordersCount."</h3>";
+                                echo "<h3>" . $ordersCount . "</h3>";
                                 ?>
 
                             </div>
@@ -69,11 +69,11 @@ $con = mysqli_connect("localhost", "admin", null, "pganim");
                                     $productCount = $productRow["count(product_id)"];
                                 }
 
-                                echo "<h3>".$productCount."</h3>";
+                                echo "<h3>" . $productCount . "</h3>";
                                 ?>
                             </div>
                             <div class="icon">
-                                <i class="fa fa-barcode"></i>
+                                <i class="fa fa-file-o"></i>
                             </div>
                             <a href="products.php" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                         </div>
@@ -93,7 +93,7 @@ $con = mysqli_connect("localhost", "admin", null, "pganim");
                                     $custCount = $custRow["count(customer_id)"];
                                 }
 
-                                echo "<h3>".$custCount."</h3>";
+                                echo "<h3>" . $custCount . "</h3>";
                                 ?>
 
                             </div>
@@ -106,6 +106,111 @@ $con = mysqli_connect("localhost", "admin", null, "pganim");
                     <!-- ./col -->
                 </div>
                 <!-- /.row -->
+
+                <div class="row">
+                    <div class="col-lg-4">
+                        <!-- small box -->
+                        <div class="small-box bg-navy">
+                            <div class="inner">
+
+                                <p>Number of Collections</p>
+
+                                <?php
+                                $queryCollections = "select count(collection_id) from collections";
+                                $resultCollections = mysqli_query($con, $queryCollections);
+                                while ($collectionRow = mysqli_fetch_array($resultCollections)) {
+                                    $collectionCount = $collectionRow["count(collection_id)"];
+                                }
+
+                                echo "<h3>" . $collectionCount . "</h3>";
+                                ?>
+
+                            </div>
+                            <div class="icon">
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <a href="collections.php" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <!-- ./col -->
+                    <div class="col-lg-4">
+                        <!-- small box -->
+                        <div class="small-box bg-red">
+                            <div class="inner">
+
+                                <p>Number of Categories</p>
+
+                                <?php
+                                $queryCat = "select count(category_id) from categories";
+                                $resultCat = mysqli_query($con, $queryCat);
+                                while ($catRow = mysqli_fetch_array($resultCat)) {
+                                    $catCount = $catRow["count(category_id)"];
+                                }
+
+                                echo "<h3>" . $catCount . "</h3>";
+                                ?>
+                            </div>
+                            <div class="icon">
+                                <i class="fa fa-list-alt"></i>
+                            </div>
+                            <a href="category.php" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <!-- ./col -->
+                    <div class="col-lg-4">
+                        <!-- small box -->
+                        <div class="small-box bg-teal">
+                            <div class="inner">
+
+                                <p>Number of Deliveries</p>
+
+                                <?php
+                                $queryDeli = "select count(delivery_id) from delivery";
+                                $resultDeli = mysqli_query($con, $queryDeli);
+                                while ($deliRow = mysqli_fetch_array($resultDeli)) {
+                                    $deliCount = $deliRow["count(delivery_id)"];
+                                }
+
+                                echo "<h3>" . $deliCount . "</h3>";
+                                ?>
+
+                            </div>
+                            <div class="icon">
+                                <i class="fa fa-truck"></i>
+                            </div>
+                            <a href="deliveries.php" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <!-- ./col -->
+                </div>
+                <!-- /.row -->
+
+                <div class="row">
+                    <div class="col-lg-4">
+                        <!-- small box -->
+                        <div class="small-box bg-maroon">
+                            <div class="inner">
+
+                                <p>Number of Payments</p>
+
+                                <?php
+                                $queryPayments = "select count(payment_id) from payments";
+                                $resultPayments = mysqli_query($con, $queryPayments);
+                                while ($paymentsRow = mysqli_fetch_array($resultPayments)) {
+                                    $paymentsCount = $paymentsRow["count(payment_id)"];
+                                }
+
+                                echo "<h3>" . $paymentsCount . "</h3>";
+                                ?>
+
+                            </div>
+                            <div class="icon">
+                                <i class="fa fa-barcode"></i>
+                            </div>
+                            <a href="payments.php" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                </div>
 
 
             </section>

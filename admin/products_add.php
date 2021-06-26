@@ -33,7 +33,7 @@ if (isset($_POST['add'])) {
     $queryAdd = "INSERT INTO products values ('$pid', '$pname', '$pcat', '$pcollection','$new_filename','$pprice', '$pdesc', '$pstock', '$createdAt','$updatedAt')";
     $resultAdd = mysqli_query($con, $queryAdd);
 
-    if ($result > 0) {
+    if ($resultAdd > 0) {
         echo "<script>alert('Product Successfully Added')</script>";
        
 

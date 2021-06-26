@@ -23,7 +23,7 @@ if(isset($_POST['update'])){
         $new_filename = $_POST['photoName'];
     }
 
-    $queryUpdate="update products set product_name='$pname',category='$pcat',collection_id='$pcollection',img='$new_filename',price='$pprice',description='$pdesc', stock_status='$pstock', updated_at = '$updatedAt' where product_id='$pid'";
+    $queryUpdate="update products set product_name='$pname',category_id='$pcat',collection_id='$pcollection',img='$new_filename',price='$pprice',description='$pdesc', stock_status='$pstock', updated_at = '$updatedAt' where product_id='$pid'";
     $resultUpdate = mysqli_query($con, $queryUpdate);
 
 

@@ -43,6 +43,9 @@
                 $query = "SELECT * FROM collections";
                 $result = mysqli_query($con, $query);
 
+                $queryCat = "SELECT * FROM categories";
+                $resultCat = mysqli_query($con, $queryCat);
+
                 ?>
 
                 <div class="form-group">
@@ -56,7 +59,14 @@
                     <label for="pcat" class="col-sm-1 control-label">Category</label>
 
                     <div class="col-sm-5">
-                        <input type="text" class="form-control" id="pcat" name="pcat" required>
+                    <select class="form-control" id="pcat" name="pcat" required>
+                            <option value="" selected>- Select -</option>
+                            <?php
+                            foreach ($resultCat as $category) {
+                                echo "<option value='" . $category['category_id'] . "'>" . $category['category_name'] . "</option>";
+                            }
+                            ?>
+                        </select>
                     </div>
 
 

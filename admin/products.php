@@ -6,6 +6,8 @@ include 'header.php';
 include 'sidebar.php';
 include 'includes/session.php';
 
+error_reporting(0);
+
 $con = mysqli_connect("localhost", "admin", null, "pganim");
 ?>
 
@@ -58,6 +60,15 @@ $con = mysqli_connect("localhost", "admin", null, "pganim");
                           $collectionName2ID = $row['collection_id'];
                           $query2 = "SELECT collection_name FROM collections WHERE collection_id = $collectionName2ID";
                           $result2 = mysqli_query($con, $query2);
+
+                          $categoryID2Name = $row['category_id'];
+                          $query3 = "SELECT category_name FROM categories WHERE category_id = $categoryID2Name";
+                          $result3 = mysqli_query($con, $query3);
+
+                          foreach ($result3 as $category) {
+                            $categoryName = $category['category_name'];
+                          }
+
                           foreach ($result2 as $collection) {
                             $image = (!empty($row['img'])) ? '../images/' . $row['img'] : '../images/noimage.jpg';
                             echo "
@@ -67,7 +78,7 @@ $con = mysqli_connect("localhost", "admin", null, "pganim");
                               <img src='" . $image . "' height='40px' width='40px'>
                             </td>
                             <td>" . $row['description'] . "</td>
-                            <td style='width:100px'>" . $row['category'] . "</td>
+                            <td style='width:100px'>" . $categoryName. "</td>
                             <td style='width:120px'>" . $collection['collection_name'] . "</td>
                             <td style='width:120px'>RM " . number_format($row['price'], 2) . "</td>
                             <td style='width:120px'>" . $row['stock_status'] . "</td>
