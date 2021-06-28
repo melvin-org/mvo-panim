@@ -15,7 +15,7 @@ if (isset($_POST['submit'])) {
     if ($result->num_rows > 0) {
 		$row = mysqli_fetch_assoc($result);
 		$_SESSION['role'] = $row['role'];
-		header("Location: dashboard.php");
+        header("Location: dashboard.php");
 	} else {
 		echo "<script>alert('Woops! Email or Password is Wrong.')</script>";
 	}

@@ -26,14 +26,6 @@ if(isset($_POST['update'])){
     $queryUpdate="update products set product_name='$pname',category_id='$pcat',collection_id='$pcollection',img='$new_filename',price='$pprice',description='$pdesc', stock_status='$pstock', updated_at = '$updatedAt' where product_id='$pid'";
     $resultUpdate = mysqli_query($con, $queryUpdate);
 
-
-
-    // if ($resultUpdate> 0) {
-    //     echo "<script>alert('Product Successfully Updated')</script>";
-        
-
-    // } else echo "<script>alert('Product Failed to Upload')</script>";
-
     
     }
 

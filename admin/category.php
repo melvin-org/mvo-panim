@@ -2,9 +2,10 @@
 <html>
 
 <?php
+include 'includes/session.php';
 include 'header.php';
 include 'sidebar.php';
-include 'includes/session.php';
+
 
 $con = mysqli_connect("localhost", "admin", null, "pganim");
 ?>
@@ -30,13 +31,22 @@ $con = mysqli_connect("localhost", "admin", null, "pganim");
           <div class="col-xs-12">
             <div class="box">
               <div class="box-header with-border">
-                <a href="#" class="btn btn-primary btn-sm btn-flat" id="addcategory" ><i class="fa fa-plus"></i> New</a>
+                <?php
+                if ($_SESSION['role'] == 'Manager') {
+                  echo "<a href='#' class='btn btn-primary btn-sm btn-flat' id='addcategory' ><i class='fa fa-plus'></i> New</a>";
+                }
+                ?>
+
                 <div class="box-body">
                   <table class="table table-bordered">
                     <thead>
                       <th>Category ID</th>
                       <th>Category Name</th>
-                      <th>Tools</th>
+                      <?php
+                      if ($_SESSION['role'] == 'Manager') {
+                        echo "<th>Tools</th>";
+                      }
+                      ?>
                     </thead>
                     <tbody>
                       <?php
@@ -44,24 +54,26 @@ $con = mysqli_connect("localhost", "admin", null, "pganim");
                       $query = "SELECT * FROM categories";
                       $result = mysqli_query($con, $query);
 
-                      
+
 
                       if (mysqli_num_rows($result) == 0) {
                         echo "<p>No Categories Found.</p>";
                       } else {
                         while ($row = mysqli_fetch_array($result)) {
-                                                      echo "
+                          echo "
                             <tr>
                             <td style='width:100px'>" . $row['category_id'] . "</td>
-                            <td style='width:150px'>" . $row['category_name'] . "</td>
-                            <td style='width:150px'>
-                            <a href ='category_edit.php?id=".$row['category_id']."'><button class='btn btn-success btn-sm editCategoryBtn btn-flat' data-id='" . $row['category_id'] . "'><i class='fa fa-edit'></i> Edit</button></a>
-                              <button onclick='deleteCategory(".$row['category_id'].")' class='btn btn-danger btn-sm delete btn-flat' data-id='" . $row['category_id'] . "'><i class='fa fa-trash'></i> Delete</button>
-                            </td>
-                           </tr>
-                            ";
+                            <td style='width:150px'>" . $row['category_name'] . "</td>";
+                          if ($_SESSION['role'] == 'Manager') {
+                            echo "<td style='width:150px'>
+                            <a href ='category_edit.php?id=" . $row['category_id'] . "'><button class='btn btn-success btn-sm editCategoryBtn btn-flat' data-id='" . $row['category_id'] . "'><i class='fa fa-edit'></i> Edit</button></a>
+                              <button onclick='deleteCategory(" . $row['category_id'] . ")' class='btn btn-danger btn-sm delete btn-flat' data-id='" . $row['category_id'] . "'><i class='fa fa-trash'></i> Delete</button>
+                            </td>";
                           }
+                          echo "</tr>
+                            ";
                         }
+                      }
 
                       ?>
                     </tbody>
@@ -78,28 +90,24 @@ $con = mysqli_connect("localhost", "admin", null, "pganim");
     </div>
   </div>
 
-<?php
-include 'includes/category_modal.php';
-?>
+  <?php
+  include 'includes/category_modal.php';
+  ?>
 
-<script>
+  <script>
+    document.getElementById('addcategory').addEventListener('click',
+      function() {
+        document.querySelector('.bg-modal-addCategory').style.display = 'flex';
 
-document.getElementById('addcategory').addEventListener('click',
-function(){
-  document.querySelector('.bg-modal-addCategory').style.display = 'flex';
+      });
 
-});
-
-function deleteCategory(categoryID){
-  var result = confirm("Are you sure you would like to DELETE this category?");
-  if(result){
-    window.location = "category_delete.php?id="+categoryID;
-  }
-}
-
-
-
-</script>
+    function deleteCategory(categoryID) {
+      var result = confirm("Are you sure you would like to DELETE this category?");
+      if (result) {
+        window.location = "category_delete.php?id=" + categoryID;
+      }
+    }
+  </script>
 
 
 

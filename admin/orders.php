@@ -2,9 +2,9 @@
 <html>
 
 <?php
+include 'includes/session.php';
 include 'header.php';
 include 'sidebar.php';
-include 'includes/session.php';
 
 $con = mysqli_connect("localhost", "admin", null, "pganim");
 ?>

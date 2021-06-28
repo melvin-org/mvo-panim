@@ -2,9 +2,9 @@
 <html>
 
 <?php
+include 'includes/session.php';
 include 'header.php';
 include 'sidebar.php';
-include 'includes/session.php';
 
 error_reporting(0);
 

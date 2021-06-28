@@ -37,14 +37,6 @@
         <div class="modal-content-addCollection">
             <form class="form-horizontal" method="POST" action="collections_add.php" id="addform" enctype="multipart/form-data">
 
-                <?php
-
-                $con = mysqli_connect("localhost", "admin", null, "pganim");
-                $query = "SELECT * FROM collections";
-                $result = mysqli_query($con, $query);
-
-                ?>
-
                 <div class="form-group">
                     <br>
                     <label for="collectionname" class="col-sm-2 control-label">Collection Name</label>

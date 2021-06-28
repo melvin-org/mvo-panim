@@ -37,15 +37,6 @@
         <div class="modal-content-addDelivery">
             <form class="form-horizontal" method="POST" action="deliveries_add.php" id="addform" enctype="multipart/form-data">
 
-                <?php
-
-                $con = mysqli_connect("localhost", "admin", null, "pganim");
-                $query = "SELECT * FROM deliveries";
-                $result = mysqli_query($con, $query);
-
-
-                ?>
-
                 <div class="form-group">
                     <br>
 

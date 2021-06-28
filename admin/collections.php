@@ -2,9 +2,10 @@
 <html>
 
 <?php
+include 'includes/session.php';
 include 'header.php';
 include 'sidebar.php';
-include 'includes/session.php';
+
 
 $con = mysqli_connect("localhost", "admin", null, "pganim");
 ?>
@@ -30,14 +31,23 @@ $con = mysqli_connect("localhost", "admin", null, "pganim");
           <div class="col-xs-12">
             <div class="box">
               <div class="box-header with-border">
-                <a href="#" class="btn btn-primary btn-sm btn-flat" id="addcollection" ><i class="fa fa-plus"></i> New</a>
+              <?php
+                      if($_SESSION['role'] == 'Manager'){
+                      echo "<a href='#' class='btn btn-primary btn-sm btn-flat' id='addcollection' ><i class='fa fa-plus'></i> New</a>";
+                      }
+                      ?>
+                
                 <div class="box-body">
                   <table class="table table-bordered">
                     <thead>
                       <th>Collection ID</th>
                       <th>Collection Name</th>
                       <th>Description</th>
-                      <th>Tools</th>
+                      <?php
+                      if($_SESSION['role'] == 'Manager'){
+                      echo "<th>Tools</th>";
+                      }
+                      ?>
                     </thead>
                     <tbody>
                       <?php
@@ -55,12 +65,14 @@ $con = mysqli_connect("localhost", "admin", null, "pganim");
                             <tr>
                             <td style='width:120px'>" . $row['collection_id'] . "</td>
                             <td style='width:150px'>" . $row['collection_name'] . "</td>
-                            <td>" . $row['description'] . "</td>
-                            <td style='width:150px'>
+                            <td>" . $row['description'] . "</td>";
+                            if($_SESSION['role'] == 'Manager'){
+                            echo "<td style='width:150px'>
                             <a href ='collections_edit.php?id=".$row['collection_id']."'><button class='btn btn-success btn-sm editCollectBtn btn-flat' data-id='" . $row['collection_id'] . "'><i class='fa fa-edit'></i> Edit</button></a>
                               <button onclick='deleteCollection(".$row['collection_id'].")' class='btn btn-danger btn-sm delete btn-flat' data-id='" . $row['collection_id'] . "'><i class='fa fa-trash'></i> Delete</button>
-                            </td>
-                           </tr>
+                            </td>";
+                            }
+                          echo" </tr>
                             ";
                           }
                         }
