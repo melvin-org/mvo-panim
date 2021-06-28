@@ -248,3 +248,13 @@ html, body{
   font-size: 20px;
   cursor: pointer;
 }
+
+.select-button {
+  background-color: #4BB7D4;
+  padding: 20px 40px 20px 40px;
+  color: white;
+  border-radius: 3px;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
