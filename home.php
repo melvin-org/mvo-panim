@@ -24,7 +24,7 @@
       <div class="container">
         <h1><span>Poggo Cat</span></h1>
         <p>Browse our new merchandise arrivals!</p>
-        <button>Shop Now</button>
+        <a href = "product_list.php"><button>Shop Now</button></a>
       </div>
     </section>
     <br>

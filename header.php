@@ -30,7 +30,7 @@
 
 </ul>
 </div>
- 
+ <hr>
  </header> 
 </body>
 </html>
