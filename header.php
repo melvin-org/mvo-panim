@@ -26,7 +26,7 @@
 <ul class="nav-table">
 
 <li class="nav-table"><a href="product_list.php">Products</a></li>
-<li class="nav-table"><a href="#collections">Collections</a></li>
+<li class="nav-table"><a href="collection.php">Collections</a></li>
 
 </ul>
 </div>

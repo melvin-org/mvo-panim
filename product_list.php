@@ -4,7 +4,7 @@
 <head>
     <link rel="stylesheet" href="style.css" type="text/css">
     <style>
-        .product-button {
+        .not-selected-button {
             font-family: Quicksand;
             background-color: transparent;
             border: none;
@@ -17,7 +17,7 @@
             font-size: 18px;
         }
 
-        .selected-product-button {
+        .selected-button {
             font-family: Quicksand;
             background-color: transparent;
             font-weight: bold;
@@ -43,11 +43,52 @@
             box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
         }
 
-        /* unvisited link */
+        .search-container {
+            right: 0px;
+            position: absolute;
+            background-color: #F5F5F5;
+            padding: 10px;
+        }
+
+        .search-box {
+            font-size: 20px;
+            height: 30px;
+            font-family: Quicksand;
+            border: none;
+            background-color: #F5F5F5;
+            color: #EE316D;
+        }
+
+        .search-box:focus {
+            outline: 1px solid transparent;
+        }
+
+        .search-button {
+            border: none;
+            background-color: transparent;
+            color: #EE316D;
+            height: 30px;
+            width: 30px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .sort-option {
+            font-size: 20px;
+            border: none;
+            height: 30px;
+            width: 240px;
+            color: #EE316D;
+            background-color: #F5F5F5;
+        }
+
+        .sort-option:focus {
+            outline: 1px solid transparent;
+        }
+
         a {
             color: black;
         }
-
     </style>
 </head>
 
@@ -71,11 +112,35 @@
         } else {
             $selectedCat = '0';
         }
+        if (isset($_GET['searchCriteria'])) {
+            $searchCriteria = $_GET['searchCriteria'];
+        } else {
+            $searchCriteria = '';
+        }
+        if (isset($_GET['sort'])) {
+            $sortBy = $_GET['sort'];
+        } else {
+            $sortBy = 1;
+        }
 
         if ($selectedCat == '0') {
-            $getProductsQuery = "SELECT * FROM products";
+            if ($sortBy == 1) {
+                $getProductsQuery = "SELECT * FROM products WHERE product_name LIKE '%$searchCriteria%'";
+            }
+            if ($sortBy == 2) {
+                $getProductsQuery = "SELECT * FROM products WHERE product_name LIKE '%$searchCriteria%' ORDER BY products.price ASC";
+            } else if ($sortBy == 3) {
+                $getProductsQuery = "SELECT * FROM products WHERE product_name LIKE '%$searchCriteria%' ORDER BY products.price DESC";
+            }
         } else {
-            $getProductsQuery = "SELECT * FROM products WHERE category_id = $selectedCat";
+            if ($sortBy == 1) {
+                $getProductsQuery = "SELECT * FROM products WHERE category_id = $selectedCat AND product_name LIKE '%$searchCriteria%'";
+            }
+            if ($sortBy == 2) {
+                $getProductsQuery = "SELECT * FROM products WHERE category_id = $selectedCat AND product_name LIKE '%$searchCriteria%' ORDER BY products.price ASC";
+            } else if ($sortBy == 3) {
+                $getProductsQuery = "SELECT * FROM products WHERE category_id = $selectedCat AND product_name LIKE '%$searchCriteria%' ORDER BY products.price DESC";
+            }
         }
 
         $productResult = mysqli_query($con, $getProductsQuery);
@@ -95,15 +160,15 @@
                             echo "<p>NO CATEGORIES FOUND.</p>";
                         } else {
                             if ($selectedCat == 0) {
-                                echo '<a href="product_list.php?catid=0"><button class="selected-product-button">All</button></a>';
+                                echo '<button onclick="UpdateUrl(0)" class="selected-button">All</button>';
                             } else {
-                                echo '<a href="product_list.php?catid=0"><button class="product-button">All</button></a>';
+                                echo '<button onclick="UpdateUrl(0)" class="not-selected-button">All</button>';
                             }
                             while ($category = mysqli_fetch_array($catResult)) {
                                 if ($selectedCat == $category['category_id']) {
-                                    echo '<a href="product_list.php?catid=' . $category['category_id'] . '"><button class="selected-product-button">' . $category['category_name'] . '</button></a>';
+                                    echo '<button onclick="UpdateUrl(' . $category['category_id'] . ')" class="selected-button">' . $category['category_name'] . '</button>';
                                 } else {
-                                    echo '<a href="product_list.php?catid=' . $category['category_id'] . '"><button class="product-button">' . $category['category_name'] . '</button></a>';
+                                    echo '<button onclick="UpdateUrl(' . $category['category_id'] . ')" class="not-selected-button">' . $category['category_name'] . '</button>';
                                 }
                             }
                         }
@@ -113,9 +178,28 @@
 
                 <!-- Product display part -->
                 <div style="width: 90%; padding-left: 30px;">
+                    <div style="width: 100%; padding-bottom: 80px;">
+                        <div class="search-container">
+                            <select onchange="UpdateUrl(<?php echo $selectedCat; ?>)" id="sortby" name="sortby" class="sort-option">
+                                <?php
+                                $sortingArray = array('Relevance', 'Price - Low to High', 'Price - High to Low');
+                                for ($i = 0; $i < 3; $i++) {
+                                    if ($sortBy == ($i + 1)) {
+                                        echo '<option value="' . ($i + 1) . '" selected>' . $sortingArray[$i] . '</option>';
+                                    } else {
+                                        echo '<option value="' . ($i + 1) . '">' . $sortingArray[$i] . '</option>';
+                                    }
+                                }
+                                ?>
+                            </select>
+                            <input type="text" id="searchProduct" name="searchProduct" placeholder="Search here..." value="<?php echo $searchCriteria ?>" class="search-box">
+                            <button onclick="UpdateUrl(<?php echo $selectedCat; ?>)" class="search-button"><i class="fas fa-search"></i></button>
+                        </div>
+
+                    </div>
                     <?php
-                    if (mysqli_num_rows($productResult) == 0) {
-                        echo "<p>NO PRODUCTS FOUND IN THIS CATEGORY.</p>";
+                    if (!$productResult || mysqli_num_rows($productResult) == 0) {
+                        echo "<span style='padding-left: 20px;'>NO PRODUCTS FOUND.</span>";
                     } else {
                         echo '<div style="display: flex; flex-wrap: wrap; width: 100%;">';
                         while ($product = mysqli_fetch_array($productResult)) {
@@ -152,7 +236,44 @@
     ?>
 
     <script>
+        // function UpdateUrlSearchCriteria(currentCatId) {
+        //     var searchCriteria = document.getElementById('searchProduct').value;
+        //     var sortBy = document.getElementById('sortby').value;
+        //     var newUrl = 'product_list.php?catid=' + currentCatId + '&searchCriteria=' + searchCriteria + '&sort=' + sortBy;
+        //     window.location.href = newUrl;
 
+        // }
+
+        // function UpdateUrlCatId(newCatId) {
+        //     var sortBy = document.getElementById('sortby').value;
+        //     if (!searchCriteria) {
+        //         var newUrl = 'product_list.php?catid=' + newCatId + '&sort=' + sortBy;
+        //     } else {
+        //         var searchCriteria = document.getElementById('searchProduct').value;
+        //         var newUrl = 'product_list.php?catid=' + newCatId + '&searchCriteria=' + searchCriteria + '&sort=' + sortBy;
+        //     }
+        //     window.location.href = newUrl;
+        // }
+
+        // function UpdateUrlSortBy(currentCatId) {
+        //     var searchCriteria = document.getElementById('searchProduct').value;
+        //     var sortBy = document.getElementById('sortby').value;
+        //     if (!searchCriteria) {
+        //         var newUrl = 'product_list.php?catid=' + newCatId + '&sort=' + sortBy;
+        //     } else {
+        //         var newUrl = 'product_list.php?catid=' + currentCatId + '&searchCriteria=' + searchCriteria + '&sort=' + sortBy;
+        //     }
+        //     console.log(newUrl);
+        //     window.location.href = newUrl;
+        // }
+
+        function UpdateUrl(CatId) {
+            var searchCriteria = document.getElementById('searchProduct').value;
+            var sortBy = document.getElementById('sortby').value;
+            var newUrl = 'product_list.php?catid=' + CatId + '&searchCriteria=' + searchCriteria + '&sort=' + sortBy;
+            window.location.href = newUrl;
+
+        }
     </script>
 
 </body>
