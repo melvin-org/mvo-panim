@@ -30,9 +30,13 @@ $con = mysqli_connect("localhost", "admin", null, "pganim");
                     <div class="col-xs-12">
                         <div class="box">
                             <div class="box-header with-border">
-                                <br>
+                                <div class="pull-right">
+                                    <input type="search" onkeyup="searchFunction()" id="search" class="form-control" name="search" placeholder="Search">
+                                </div>
+                                
                                 <div class="box-body">
-                                    <table class="table table-bordered">
+                                <br>&nbsp;<br>
+                                    <table id="orders-table" class="table table-bordered">
                                         <thead>
                                             <th>Order ID:</th>
                                             <th>Customer Name:</th>
@@ -63,7 +67,7 @@ $con = mysqli_connect("localhost", "admin", null, "pganim");
                                                     $result3 = mysqli_query($con, $query3);
 
                                                     foreach ($result2 as $customer) {
-                                                    foreach ($result3 as $product) {
+                                                        foreach ($result3 as $product) {
                                                             echo "
                             <tr>
                             <td style='width:120px'>" . $row['order_id'] . "</td>
@@ -73,14 +77,14 @@ $con = mysqli_connect("localhost", "admin", null, "pganim");
                             <td style='width:120px'>" . $row['quantity'] . "</td>
                             <td style='width:120px'>" . $row['order_status'] . "</td>
                             <td style='width:150px'>
-                            <a href ='orders_edit.php?id=" . $row['order_id'] . "&custid=".$row['customer_id']."&prodid=".$row['product_id']."'><button class='btn btn-success btn-sm edit btn-flat' data-id='" . $row['order_id'] . "'><i class='fa fa-edit'></i> Edit</button></a>
+                            <a href ='orders_edit.php?id=" . $row['order_id'] . "&custid=" . $row['customer_id'] . "&prodid=" . $row['product_id'] . "'><button class='btn btn-success btn-sm edit btn-flat' data-id='" . $row['order_id'] . "'><i class='fa fa-edit'></i> Edit</button></a>
                             </td>
                            </tr>
                             ";
                                                         }
                                                     }
-                                               }
-                                           }
+                                                }
+                                            }
 
                                             ?>
                                         </tbody>
@@ -97,6 +101,32 @@ $con = mysqli_connect("localhost", "admin", null, "pganim");
         </div>
     </div>
 
+
+<script>
+
+function searchFunction() {
+  var input, filter, table, tr, td, i;
+  input = document.getElementById("search");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("orders-table");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    let rowTds = tr[i].getElementsByTagName("td")
+    for (j = 0; j < rowTds.length; j++){
+      td = tr[i].getElementsByTagName("td")[j];
+      if (td) {
+        if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+          break;
+        } else {
+          tr[i].style.display = "none";
+        }
+      }
+    }       
+  }
+}
+
+</script>
 </body>
 
 </html>

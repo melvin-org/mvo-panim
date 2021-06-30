@@ -22,7 +22,7 @@
 		</div>
 	</div>
 	<div class="footer-section about">
-		<h4>About Us</h4>
+		<h4><strong>About Us</strong></h4>
 		<ul class="footer-about" style="padding-inline-start: 0px;">
 			<li><a href="#">Shipping Policy</a></li>
 			<li><a href="#">Refund Policy</a></li>
@@ -32,16 +32,17 @@
 	</div>
 	
 	<div class="footer-section help">
-	<h4>Contact Us</h4>
+	<h4><strong>Contact Us</strong></h4>
 		<ul class="footer-about"  style="padding-inline-start: 0px;">
 			<li>If you have any questions, please <a href="#"><u>contact us</u></a></li>
 		</ul>
 
-	<h4>Payment</h4>
+	<h4><strong>Payment</strong></h4>
 	<ul id="footer-payment"  style="padding-inline-start: 0px;">
 			<li><i class="fab fa-cc-visa"></i></li>
-			<li><i class="fab fa-paypal"></i></li>
 			<li><i class="fab fa-cc-mastercard"></i></li>
+			<li><i class="fab fa-paypal"></i></li>
+	
 		</ul>
 	</div>
 	

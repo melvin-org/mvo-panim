@@ -42,6 +42,7 @@
       <li><a href="category.php"><i class="fa fa-list-alt"></i> <span>Categories</span></a></li>
       <li><a href="deliveries.php"><i class="fa fa-truck"></i> <span>Deliveries</span></a></li>
       <li><a href="payments.php"><i class="fa fa-barcode"></i> <span>Payments</span></a></li>
+      <li><a href="feedbacks.php"><i class="fa fa-comments-o"></i> <span>Feedbacks</span></a></li>
       <li class="header">OTHERS</li>
       <li><a href="logout.php"><i class="fa fa-sign-out"></i> <span>Log Out</span></a></li>
       

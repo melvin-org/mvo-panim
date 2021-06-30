@@ -33,8 +33,11 @@ $con = mysqli_connect("localhost", "admin", null, "pganim");
             <div class="box">
               <div class="box-header with-border">
                 <a href="#" class="btn btn-primary btn-sm btn-flat" id="adddelivery" ><i class="fa fa-plus"></i> New</a>
+                <div class="pull-right">
+                                    <input type="search" onkeyup="searchFunction()" id="search" class="form-control" name="search" placeholder="Search">
+                                </div>
                 <div class="box-body">
-                  <table class="table table-bordered">
+                  <table id="deliveries-table" class="table table-bordered">
                     <thead>
                       <th>Delivery ID</th>
                       <th>Order ID</th>
@@ -106,6 +109,27 @@ function deleteDeli(deliveryID){
   }
 }
 
+function searchFunction() {
+  var input, filter, table, tr, td, i;
+  input = document.getElementById("search");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("deliveries-table");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    let rowTds = tr[i].getElementsByTagName("td")
+    for (j = 0; j < rowTds.length; j++){
+      td = tr[i].getElementsByTagName("td")[j];
+      if (td) {
+        if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+          break;
+        } else {
+          tr[i].style.display = "none";
+        }
+      }
+    }       
+  }
+}
 
 
 </script>

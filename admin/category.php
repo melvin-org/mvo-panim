@@ -36,9 +36,11 @@ $con = mysqli_connect("localhost", "admin", null, "pganim");
                   echo "<a href='#' class='btn btn-primary btn-sm btn-flat' id='addcategory' ><i class='fa fa-plus'></i> New</a>";
                 }
                 ?>
-
+                <div class="pull-right">
+                  <input type="search" onkeyup="searchFunction()" id="search" class="form-control" name="search" placeholder="Search">
+                </div>
                 <div class="box-body">
-                  <table class="table table-bordered">
+                  <table id="category-table" class="table table-bordered">
                     <thead>
                       <th>Category ID</th>
                       <th>Category Name</th>
@@ -105,6 +107,28 @@ $con = mysqli_connect("localhost", "admin", null, "pganim");
       var result = confirm("Are you sure you would like to DELETE this category?");
       if (result) {
         window.location = "category_delete.php?id=" + categoryID;
+      }
+    }
+
+    function searchFunction() {
+      var input, filter, table, tr, td, i;
+      input = document.getElementById("search");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("category-table");
+      tr = table.getElementsByTagName("tr");
+      for (i = 0; i < tr.length; i++) {
+        let rowTds = tr[i].getElementsByTagName("td")
+        for (j = 0; j < rowTds.length; j++) {
+          td = tr[i].getElementsByTagName("td")[j];
+          if (td) {
+            if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+              tr[i].style.display = "";
+              break;
+            } else {
+              tr[i].style.display = "none";
+            }
+          }
+        }
       }
     }
   </script>

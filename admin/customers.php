@@ -30,9 +30,13 @@ $con = mysqli_connect("localhost", "admin", null, "pganim");
                     <div class="col-xs-12">
                         <div class="box">
                             <div class="box-header with-border">
-                                <br>
+                            <div class="pull-right">
+                                    <input type="search" onkeyup="searchFunction()" id="search" class="form-control" name="search" placeholder="Search">
+                                </div>
+                                
                                 <div class="box-body">
-                                    <table class="table table-bordered">
+                                <br>&nbsp;<br>
+                                    <table id="customers-table" class="table table-bordered">
                                         <thead>
                                             <th>Customer ID</th>
                                             <th>Customer First Name</th>
@@ -91,6 +95,32 @@ $con = mysqli_connect("localhost", "admin", null, "pganim");
             </section>
         </div>
     </div>
+
+    <script>
+
+function searchFunction() {
+  var input, filter, table, tr, td, i;
+  input = document.getElementById("search");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("customers-table");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    let rowTds = tr[i].getElementsByTagName("td")
+    for (j = 0; j < rowTds.length; j++){
+      td = tr[i].getElementsByTagName("td")[j];
+      if (td) {
+        if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+          break;
+        } else {
+          tr[i].style.display = "none";
+        }
+      }
+    }       
+  }
+}
+
+</script>
 
 </body>
 

@@ -257,6 +257,31 @@ $con = mysqli_connect("localhost", "admin", null, "pganim");
                                 <a href="payments.php" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
+
+                        <div class="col-lg-4">
+                            <!-- small box -->
+                            <div class="small-box bg-blue">
+                                <div class="inner">
+
+                                    <p>Number of Feedbacks</p>
+
+                                    <?php
+                                    $queryFeedbacks = "select count(feedback_id) from feedback";
+                                    $resultFeedbacks = mysqli_query($con, $queryFeedbacks);
+                                    while ($feedbacksRow = mysqli_fetch_array($resultFeedbacks)) {
+                                        $feedbacksCount = $feedbacksRow["count(feedback_id)"];
+                                    }
+
+                                    echo "<h3>" . $feedbacksCount . "</h3>";
+                                    ?>
+
+                                </div>
+                                <div class="icon">
+                                    <i class="fa fa-comments-o"></i>
+                                </div>
+                                <a href="feedbacks.php" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
                     </div>
 
                 <?php

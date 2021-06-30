@@ -46,6 +46,10 @@ $result = mysqli_query($con, $query);
                     echo "<form class='form-horizontal' id='collectionsupdate' action='collections_update.php' method='POST' enctype='multipart/form-data'>";
                     while ($row = mysqli_fetch_array($result)) {
 
+                        $photoName = $row['image'];
+
+                        echo "<input type='hidden' name='photoName' value='".$photoName."'>";
+
                         echo "<div class='form-group'>";
                         echo "<label for='collection_id' class='col-sm-1 control-label'>Collection ID: </label><div class='col-sm-3'><input type='text' class='form-control' id ='collection_id' name='collection_id' value='" . $row['collection_id'] . "' readonly></div>";
                         echo "</div>";
@@ -53,6 +57,10 @@ $result = mysqli_query($con, $query);
 
                         echo "<div class='form-group'>";
                         echo "<label for='collection_name' class='col-sm-1 control-label'>Customer First Name: </label><div class='col-sm-3'><input type='text' class='form-control' id ='collection_name' name='collection_name' value='" . $row['collection_name'] . "' required ></div>";
+                        echo "</div>";
+
+                        echo "<div class='form-group'>";
+                        echo "<label for='photo' class='col-sm-1 control-label'>Photo: </label><div class='col-sm-3'><input type='file' class='form-control' id ='photo' name='photo'></div>";
                         echo "</div>";
 
                         echo "<div class='form-group'>";

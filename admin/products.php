@@ -32,9 +32,17 @@ $con = mysqli_connect("localhost", "admin", null, "pganim");
           <div class="col-xs-12">
             <div class="box">
               <div class="box-header with-border">
-                <a href="#" class="btn btn-primary btn-sm btn-flat" id="addproduct" ><i class="fa fa-plus"></i> New</a>
+
+                <div class="pull-left">
+                  <a href="#" class="btn btn-primary btn-sm btn-flat" id="addproduct"><i class="fa fa-plus"></i> New</a>
+                </div>
+                <div class="pull-right">
+                  <input type="search" onkeyup="searchFunction()" id="search" class="form-control" name="search" placeholder="Search">
+                </div>
+
                 <div class="box-body">
-                  <table class="table table-bordered">
+                  <br>&nbsp;<br>
+                  <table id="products-table" class="table table-bordered">
                     <thead>
                       <th>Name</th>
                       <th>Photo</th>
@@ -51,7 +59,7 @@ $con = mysqli_connect("localhost", "admin", null, "pganim");
                       $query = "SELECT * FROM products";
                       $result = mysqli_query($con, $query);
 
-                      
+
 
                       if (mysqli_num_rows($result) == 0) {
                         echo "<p>No products found.</p>";
@@ -78,13 +86,13 @@ $con = mysqli_connect("localhost", "admin", null, "pganim");
                               <img src='" . $image . "' height='40px' width='40px'>
                             </td>
                             <td>" . $row['description'] . "</td>
-                            <td style='width:100px'>" . $categoryName. "</td>
+                            <td style='width:100px'>" . $categoryName . "</td>
                             <td style='width:120px'>" . $collection['collection_name'] . "</td>
                             <td style='width:120px'>RM " . number_format($row['price'], 2) . "</td>
                             <td style='width:120px'>" . $row['stock_status'] . "</td>
                             <td style='width:150px'>
-                            <a href ='products_edit.php?id=".$row['product_id']."'><button class='btn btn-success btn-sm editProdBtn btn-flat' data-id='" . $row['product_id'] . "'><i class='fa fa-edit'></i> Edit</button></a>
-                              <button onclick='deleteProd(".$row['product_id'].")' class='btn btn-danger btn-sm delete btn-flat' data-id='" . $row['product_id'] . "'><i class='fa fa-trash'></i> Delete</button>
+                            <a href ='products_edit.php?id=" . $row['product_id'] . "'><button class='btn btn-success btn-sm editProdBtn btn-flat' data-id='" . $row['product_id'] . "'><i class='fa fa-edit'></i> Edit</button></a>
+                              <button onclick='deleteProd(" . $row['product_id'] . ")' class='btn btn-danger btn-sm delete btn-flat' data-id='" . $row['product_id'] . "'><i class='fa fa-trash'></i> Delete</button>
                             </td>
                            </tr>
                             ";
@@ -107,33 +115,52 @@ $con = mysqli_connect("localhost", "admin", null, "pganim");
     </div>
   </div>
 
-<?php
-include 'includes/product_modal.php';
-?>
+  <?php
+  include 'includes/product_modal.php';
+  ?>
 
-<script>
+  <script>
+    document.getElementById('addproduct').addEventListener('click',
+      function() {
+        document.querySelector('.bg-modal-add').style.display = 'flex';
 
-document.getElementById('addproduct').addEventListener('click',
-function(){
-  document.querySelector('.bg-modal-add').style.display = 'flex';
+      });
 
-});
+    document.querySelector('.close-add').addEventListener('click',
+      function() {
+        document.querySelector('.bg-modal-add').style.display = 'none';
+      });
 
-document.querySelector('.close-add').addEventListener('click',
-function(){
-  document.querySelector('.bg-modal-add').style.display = 'none';
-});
+    function deleteProd(productID) {
+      var result = confirm("Are you sure you would like to DELETE this product?");
+      if (result) {
+        window.location = "products_delete.php?id=" + productID;
+      }
+    }
 
-function deleteProd(productID){
-  var result = confirm("Are you sure you would like to DELETE this product?");
-  if(result){
-    window.location = "products_delete.php?id="+productID;
+
+    function searchFunction() {
+  var input, filter, table, tr, td, i;
+  input = document.getElementById("search");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("products-table");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    let rowTds = tr[i].getElementsByTagName("td")
+    for (j = 0; j < rowTds.length; j++){
+      td = tr[i].getElementsByTagName("td")[j];
+      if (td) {
+        if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+          break;
+        } else {
+          tr[i].style.display = "none";
+        }
+      }
+    }       
   }
 }
-
-
-
-</script>
+  </script>
 
 
 

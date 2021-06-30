@@ -5,6 +5,7 @@ $con = mysqli_connect("localhost", "admin", null, "pganim");
 if (isset($_POST['add'])) {
     $collectionname = $_POST['collectionname'];
     $collectiondesc = $_POST['collectiondesc'];
+    $filename = $_FILES['photo']['name'];
     date_default_timezone_set("Asia/Kuala_Lumpur");
     $createdAt =  date('Y-m-d H:i:s');
     $updatedAt =  date('Y-m-d H:i:s');
@@ -15,7 +16,15 @@ if (isset($_POST['add'])) {
         $cid = $row["max(collection_id)"] + 1;
     }
 
-    $queryAdd = "INSERT INTO collections values ('$cid', '$collectionname', '$collectiondesc', '$createdAt','$updatedAt')";
+    if (!empty($filename)) {
+        $ext = pathinfo($filename, PATHINFO_EXTENSION);
+        $new_filename = $collectionname . '.' . $ext;
+        move_uploaded_file($_FILES['photo']['tmp_name'], '../images/' . $new_filename);
+    } else {
+        $new_filename = '';
+    }
+
+    $queryAdd = "INSERT INTO collections values ('$cid', '$collectionname', '$collectiondesc', '$new_filename', '$createdAt','$updatedAt')";
     $resultAdd = mysqli_query($con, $queryAdd);
 
     if ($resultAdd > 0) {

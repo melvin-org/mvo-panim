@@ -4,14 +4,21 @@
   font-family: "TitanOne";
   font-style: normal;
   font-weight: 400;
-  src: url(TitanOne-Regular.ttf) format("truetype");
+  src: url(fonts/TitanOne-Regular.ttf) format("truetype");
 }
 
 @font-face {
     font-family: "Basic Commercial";
     font-style: normal;
     font-weight: 400;
-    src: url(Basic-Commercial.ttf) format("truetype");
+    src: url(fonts/Basic-Commercial.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "Quicksand";
+  font-style: normal;
+  font-weight: 400;
+  src: url(fonts/Quicksand-Regular.ttf) format("truetype");
 }
 
 /* Add a white background color to the top navigation */
@@ -126,7 +133,7 @@
   height: 400px;
   width:100%;
   position: relative;
-  font-family: "Basic Commercial";
+  font-family: "Quicksand";
 }
 .footer h4,h5{
 	color: black;
@@ -204,6 +211,10 @@ html, body{
 
 .page-wrapper{
 	min-height:100%;
+}
+
+.quicksand-font {
+  font-family: "Quicksand";
 }
 
 /* insert other css below */
