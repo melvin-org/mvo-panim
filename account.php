@@ -10,7 +10,7 @@ include 'header.php';
 
 <body>
 
-    
+
     <?php
 
     $con = $con = mysqli_connect("localhost", "admin", null, "pganim");
@@ -31,16 +31,14 @@ include 'header.php';
         <br>
         <br>
         <div class="container">
-            <div class="row">
-
-                <p><a style="color: inherit; text-decoration:none;" href="logout.php">Logout</a></p>
-
-            </div>
 
             <div class="row">
-
-                <h3>My Account</h3>
-
+                <div class="col-11">
+                    <h3>My Account</h3>
+                </div>
+                <div class="col-1">
+                    <a type='button' class='btn btn-secondary' href="logout.php"><i class="fa fa-sign-out" aria-hidden="true"></i>LOGOUT</a>
+                </div>
             </div>
 
             <br>
@@ -57,28 +55,28 @@ include 'header.php';
                     <h5>My Orders</h5>
                     <hr>
                     <div class="row">
-                        
-                            <?php
 
-                            $query = "SELECT * FROM orders WHERE customer_id = $custid";
-                            $result = mysqli_query($con, $query);
+                        <?php
+
+                        $query = "SELECT * FROM orders WHERE customer_id = $custid";
+                        $result = mysqli_query($con, $query);
 
 
 
-                            if (mysqli_num_rows($result) == 0) {
-                                echo "<p>No orders found.</p>";
-                            } else {
-                            ?>
-                        <table class="table table-bordered">
-                            <thead>
-                                <th>Order ID:</th>
-                                <th>Product Name:</th>
-                                <th>Price</th>
-                                <th>Quantity</th>
-                                <th>Order Status</th>
-                            </thead>
-                            <tbody>
-                            <?php
+                        if (mysqli_num_rows($result) == 0) {
+                            echo "<p>No orders found.</p>";
+                        } else {
+                        ?>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <th>Order ID:</th>
+                                    <th>Product Name:</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                    <th>Order Status</th>
+                                </thead>
+                                <tbody>
+                                <?php
 
                                 while ($row = mysqli_fetch_array($result)) {
 
@@ -101,10 +99,10 @@ include 'header.php';
                             }
 
 
-                            ?>
-                            </tbody>
-                        </table>
-                        
+                                ?>
+                                </tbody>
+                            </table>
+
                     </div>
 
                 </div>
@@ -123,7 +121,7 @@ include 'header.php';
 
 
                             echo "<div class='row'>";
-                            echo "<p>" . $row['first_name']." ".$row['last_name']. "</p>";
+                            echo "<p>" . $row['first_name'] . " " . $row['last_name'] . "</p>";
                             echo "</div>";
 
                             echo "<div class='row'>";

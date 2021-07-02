@@ -34,7 +34,7 @@
 	<div class="footer-section help">
 	<h4><strong>Contact Us</strong></h4>
 		<ul class="footer-about"  style="padding-inline-start: 0px;">
-			<li>If you have any questions, please <a href="#"><u>contact us</u></a></li>
+			<li>If you have any questions, please <a href="contactus.php"><u>contact us</u></a></li>
 		</ul>
 
 	<h4><strong>Payment</strong></h4>

@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <?php
 session_start();
-include 'header.php';
 
 $con = mysqli_connect("localhost", "admin", null, "pganim");
 
@@ -19,7 +18,7 @@ if (isset($_POST['login'])) {
         $_SESSION['first_name'] = $row['first_name'];
         $_SESSION['full_name'] = $row['first_name']." ".$row['last_name'];
         $_SESSION['cust_id'] = $row['customer_id'];
-        echo "<script language='javascript'>window.location='account.php';</script>";
+        echo "<script language='javascript'>window.location='home.php';</script>";
     } else {
         echo "<script>alert('Whoops! Email or Password is Wrong.')</script>";
     }
@@ -27,11 +26,16 @@ if (isset($_POST['login'])) {
 
 ?>
 <html>
+<?php
+include 'header.php'; 
+?>
+
+<head>
+    <link rel="stylesheet" href="style.css" type="text/css">
+</head>
 
 <body>
 
-    <!--Get header -->
-  
 
     <!-- page wrapper class -->
     <div class="page-wrapper">

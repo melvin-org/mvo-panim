@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html>
-<!--Get header -->
 <?php
+session_start();
 include 'header.php'; 
 ?>
+
+
 <head>
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body>
+
+<!--Get header -->
 
 <!-- page wrapper class -->
 <div class="page-wrapper">

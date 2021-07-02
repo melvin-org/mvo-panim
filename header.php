@@ -2,44 +2,39 @@
 <html>
 
 <head>
-  
+	<link rel="stylesheet" href="style.css" type="text/css">
+  <link rel = "icon" href = "poggo-icon.png" type = "image/x-icon">
   <link rel="stylesheet" href="bower_components/bootstrap-5/css/bootstrap.min.css">
   <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
-  <link rel="stylesheet" href="style.css" type="text/css">
-  <link rel = "icon" href = "poggo-icon.png" type = "image/x-icon">
-  <title>Poggo Animation</title>
+	<title>Poggo Animation</title>
 </head>
-
 <body>
-  <header>
-    <div class="topnav">
+<header>
+<div class="topnav">
 
-      <!-- Centered link -->
-      <div class="topnav-centered">
-        <a href="#home" class="active"><img src="poggo.png" alt="poggo" style="padding:20px 0; margin-top:120px"></a>
-      </div>
+  <!-- Centered link -->
+  <div class="topnav-centered">
+    <a href="home.php" class="active"><img src="poggo.png" alt="poggo" style="padding:20px 0; margin-top:140px"></a>
+  </div>
 
-      <!-- Right-aligned links -->
-      <div class="topnav-right">
-        <a href="accountdetails.php">Account</a>
-        <a href="#search">Search</a>
-        <a href="#cart">Cart</a>
-      </div>
+  <!-- Right-aligned links -->
+  <div class="topnav-right">
+  <a href="account.php">Account</a>
+    <!-- <a href="#search">Search</a> -->
+    <a href="cart.php">Cart</a>
+  </div>
+  
+</div>
+<div class="nav-table">
+<ul class="nav-table">
 
-    </div>
-    <div class="nav-table">
-      <ul class="nav-table">
+<li class="nav-table"><a href="product_list.php">Products</a></li>
+<li class="nav-table"><a href="collection.php">Collections</a></li>
 
-        <li class="nav-table"><a href="#">Products</a></li>
-        <li class="nav-table"><a href="#">Collections</a></li>
-
-      </ul>
-    </div>
-    <hr>
-
-  </header>
-
-  <script src="bower_components/bootstrap-5/js/bootstrap.bundle.js"></script>
+</ul>
+</div>
+ <hr>
+ </header>
+ <script src="bower_components/bootstrap-5/js/bootstrap.bundle.js"></script> 
 </body>
-
 </html>

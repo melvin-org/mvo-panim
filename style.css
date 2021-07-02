@@ -4,26 +4,26 @@
   font-family: "TitanOne";
   font-style: normal;
   font-weight: 400;
-  src: url(fonts/TitanOne-Regular.ttf) format("truetype");
+  src: url(TitanOne-Regular.ttf) format("truetype");
 }
 
 @font-face {
     font-family: "Basic Commercial";
     font-style: normal;
     font-weight: 400;
-    src: url(fonts/Basic-Commercial.ttf) format("truetype");
+    src: url(Basic-Commercial.ttf) format("truetype");
 }
 
 @font-face {
   font-family: "Quicksand";
   font-style: normal;
   font-weight: 400;
-  src: url(fonts/Quicksand-Regular.ttf) format("truetype");
+  src: url(Quicksand-Regular.ttf) format("truetype");
 }
 
 /* Add a white background color to the top navigation */
 .topnav {
-  padding: 50px 0px;
+  padding: 60px 0px;
   position: relative;
   overflow: hidden;
   background-color: #fff;
@@ -98,7 +98,7 @@
 
 .nav-table ul{
   list-style-type: none;
-  
+
   margin: 0;
   padding: 0;
   overflow: hidden;
@@ -120,7 +120,7 @@
 .nav-table li a:hover {
   background-color: #fff;
   text-decoration: underline;
-  text-decoration-thickness: 2px;
+  /* text-decoration-thickness: 2px; */
 }
 
 /* footer css*/
@@ -213,8 +213,39 @@ html, body{
 	min-height:100%;
 }
 
+/* insert other css below */
+
 .quicksand-font {
   font-family: "Quicksand";
 }
 
-/* insert other css below */
+.continue-shopping {
+  cursor: pointer; 
+  color: #4BB7D4;
+}
+
+.remove-button {
+  color: #4BB7D4;
+  cursor: pointer;
+}
+
+
+.checkout-button {
+  background-color: #4BB7D4;
+  padding: 20px 40px 20px 40px;
+  color: white;
+  border-radius: 3px;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.checkout-button:hover {
+  background-color: #4BB7D4;
+  padding: 19px 40px 21px 40px;
+  color: white;
+  border-radius: 3px;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
