@@ -37,6 +37,11 @@ include 'header.php';
                     Your Cart
                 </span>
             </div>
+            <?php
+            if(mysqli_num_rows($customerCartResult) == 0){
+                echo '<br><div class="text-center"><p style="font-size:18px;">You have not added any products to your cart!</p></div>';
+            }else{
+            ?>
             <div style="width: 100%; display: flex; font-size: 20px; padding: 60px 0 10px 0;">
                 <div style="width: 55%; padding-left: 20px;">
                     <span>Product</span>
@@ -53,6 +58,7 @@ include 'header.php';
             </div>
             <hr>
             <?php
+            
             while ($cart = mysqli_fetch_array($customerCartResult)) {
                 $CartProdId = $cart["product_id"];
                 $getProductQuery = "SELECT * FROM products WHERE product_id = $CartProdId";
@@ -113,7 +119,9 @@ include 'header.php';
                     </a>
                 </div>
             </div>
-
+            <?php
+            }
+            ?>
 
         </div>
 

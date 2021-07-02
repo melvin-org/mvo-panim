@@ -9,6 +9,14 @@ if(isset($_POST['update'])){
     $filename = $_FILES['photo']['name'];
     date_default_timezone_set("Asia/Kuala_Lumpur");
     $updatedAt =  date('Y-m-d H:i:s');
+
+    if($_POST['homepage'] == 'on'){
+        $homepage = 1;
+    }
+    else{
+        $homepage = 0;
+    }
+    
     
     if (!empty($filename)) {
         $ext = pathinfo($filename, PATHINFO_EXTENSION);
@@ -18,13 +26,13 @@ if(isset($_POST['update'])){
         $new_filename = $_POST['photoName'];
     }
     
-    $queryUpdate="update collections set collection_name='$collectionName', image='$new_filename', description='$description' where collection_id='$cid'";
+    $queryUpdate="update collections set collection_name='$collectionName', image='$new_filename', description='$description', homepage='$homepage', updated_at='$updatedAt' where collection_id='$cid'";
     $resultUpdate = mysqli_query($con, $queryUpdate);
     
 
     mysqli_close($con);
 
-    header('location: collections.php');
+   header('location: collections.php');
 
 }
 

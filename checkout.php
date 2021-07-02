@@ -45,7 +45,7 @@ include 'includes/addressedit_modal.php';
         <div class="container">
             <div class="row">
 
-                <div class="col-8 h-100">
+                <div class="col-7 h-100">
                     <span><b>Delivery Details</b></span>
                     <div class="row pt-2 pb-2">
                         <div class="col-3">
@@ -128,7 +128,7 @@ include 'includes/addressedit_modal.php';
                     </div> -->
 
                 </div>
-
+                <div class="col-1"></div>
                 <div class="col-4 bg-light text-dark h-100">
                     <span><b>Your Order Details</b></span>
                     <?php
@@ -172,7 +172,7 @@ include 'includes/addressedit_modal.php';
                     </div>
                     <div class="row mb-5">
                         <div class="col-9">
-                            <span><b>Total<small>(Including Delivery Fee)</small></b></span>
+                            <span><b>Total<small> (Including Delivery Fee)</small></b></span>
                         </div>
                         <div class="col-3">
                             <b>RM<span id="toPay" class="float-end" value="<?php echo $total ?>"><?php echo number_format($total, 2, '.', '') ?></span></b>

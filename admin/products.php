@@ -51,6 +51,7 @@ $con = mysqli_connect("localhost", "admin", null, "pganim");
                       <th>Collection</th>
                       <th>Price</th>
                       <th>Stock Status</th>
+                      <th>Is New</th>
                       <th>Tools</th>
                     </thead>
                     <tbody>
@@ -77,6 +78,13 @@ $con = mysqli_connect("localhost", "admin", null, "pganim");
                             $categoryName = $category['category_name'];
                           }
 
+                          if($row['isNew'] == 0){
+                            $isNew = 'Disabled';
+                          }
+                          else{
+                            $isNew = 'Enabled';
+                          }
+
                           foreach ($result2 as $collection) {
                             $image = (!empty($row['img'])) ? '../images/' . $row['img'] : '../images/noimage.jpg';
                             echo "
@@ -90,6 +98,7 @@ $con = mysqli_connect("localhost", "admin", null, "pganim");
                             <td style='width:120px'>" . $collection['collection_name'] . "</td>
                             <td style='width:120px'>RM " . number_format($row['price'], 2) . "</td>
                             <td style='width:120px'>" . $row['stock_status'] . "</td>
+                            <td style='width:100px'>" . $isNew . "</td>
                             <td style='width:150px'>
                             <a href ='products_edit.php?id=" . $row['product_id'] . "'><button class='btn btn-success btn-sm editProdBtn btn-flat' data-id='" . $row['product_id'] . "'><i class='fa fa-edit'></i> Edit</button></a>
                               <button onclick='deleteProd(" . $row['product_id'] . ")' class='btn btn-danger btn-sm delete btn-flat' data-id='" . $row['product_id'] . "'><i class='fa fa-trash'></i> Delete</button>

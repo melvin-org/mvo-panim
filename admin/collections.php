@@ -46,6 +46,7 @@ $con = mysqli_connect("localhost", "admin", null, "pganim");
                       <th>Collection Name</th>
                       <th>Description</th>
                       <th>Collection Image </th>
+                      <th>Homepage</th>
                       <?php
                       if($_SESSION['role'] == 'Manager'){
                       echo "<th>Tools</th>";
@@ -65,6 +66,12 @@ $con = mysqli_connect("localhost", "admin", null, "pganim");
                       } else {
                         while ($row = mysqli_fetch_array($result)) {
                           $image = (!empty($row['image'])) ? '../images/' . $row['image'] : '../images/noimage.jpg';
+                          if($row['homepage'] == 0){
+                            $homepage = 'Disabled';
+                          }
+                          else{
+                            $homepage = 'Enabled';
+                          }
 
                                                       echo "
                             <tr>
@@ -73,7 +80,9 @@ $con = mysqli_connect("localhost", "admin", null, "pganim");
                             <td>" . $row['description'] . "</td>
                             <td style='width:120px'>
                               <img src='" . $image . "' height='40px' width='40px'>
-                            </td>";
+                            </td>
+                            <td style='width:100px'>" . $homepage . "</td>";
+
                             if($_SESSION['role'] == 'Manager'){
                             echo "<td style='width:150px'>
                             <a href ='collections_edit.php?id=".$row['collection_id']."'><button class='btn btn-success btn-sm editCollectBtn btn-flat' data-id='" . $row['collection_id'] . "'><i class='fa fa-edit'></i> Edit</button></a>

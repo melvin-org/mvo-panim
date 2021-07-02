@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="../bower_components/font-awesome/css/font-awesome.min.css">
-    <!--<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">-->
     <!-- Theme style -->
     <link rel="stylesheet" href="../dist/css/AdminLTE.min.css">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -20,4 +19,10 @@
 
 
 </head>
+
+<body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+</body>
 </html>

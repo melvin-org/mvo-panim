@@ -92,9 +92,9 @@ include 'header.php';
         if (isset($_GET['ae'])) {
             $addResult = $_GET['ae'];
             if ($addResult == 'true') {
-                echo '<script>window.alert("Failed, product already within cart...");</script>';
+                echo '<script>window.alert("Failed, product already within cart!");</script>';
             } else if ($addResult == 'false') {
-                echo '<script>window.alert("Product successfully added to cart...");</script>';
+                echo '<script>window.alert("Product successfully added to cart!");</script>';
 
             }
         }

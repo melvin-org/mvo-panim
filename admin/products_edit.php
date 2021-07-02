@@ -89,6 +89,17 @@ $resultCategory = mysqli_query($con, $queryCategory);
                         echo "</div>";
 
                         echo "<div class='form-group'>";
+                        echo "<label for='isNew' class='col-sm-1 control-label'>Is New: </label><div class='col-sm-3'><input type='checkbox' style=' margin-top:8px; height:20px; width:20px;' id ='isNew' name='isNew'";
+                        if($row['isNew']== 1){
+                        echo "checked></div>";
+                        }
+                        else{
+                            echo "></div>";
+                        }
+                        echo "</div>";
+
+
+                        echo "<div class='form-group'>";
                         echo "<label for='description' class='col-sm-1 control-label'>Description: </label><div class='col-sm-7'><textarea name='description' rows='10' cols='133' class='form-control' id ='description'>". $row['description'] . "</textarea></div>";
                         echo "</div>";
                     }

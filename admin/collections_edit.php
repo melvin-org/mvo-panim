@@ -48,6 +48,8 @@ $result = mysqli_query($con, $query);
 
                         $photoName = $row['image'];
 
+                        
+
                         echo "<input type='hidden' name='photoName' value='".$photoName."'>";
 
                         echo "<div class='form-group'>";
@@ -61,7 +63,15 @@ $result = mysqli_query($con, $query);
 
                         echo "<div class='form-group'>";
                         echo "<label for='photo' class='col-sm-1 control-label'>Photo: </label><div class='col-sm-3'><input type='file' class='form-control' id ='photo' name='photo'></div>";
+                        echo "<label for='homepage' class='col-sm-1 control-label'>Homepage: </label><div class='col-sm-3'><input type='checkbox' style=' margin-top:8px; height:20px; width:20px;' id ='homepage' name='homepage'";
+                        if($row['homepage']== 1){
+                        echo "checked></div>";
+                        }
+                        else{
+                            echo "></div>";
+                        }
                         echo "</div>";
+
 
                         echo "<div class='form-group'>";
                         echo "<label for='description' class='col-sm-1 control-label'>Description: </label><div class='col-sm-7'><textarea name='description' rows='10' cols='133' class='form-control' id ='description'>". $row['description'] . "</textarea></div>";
