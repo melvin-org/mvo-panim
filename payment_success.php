@@ -18,7 +18,9 @@ include 'header.php';
 
 <!-- START BELOW HERE -->
 
-
+<div>
+    <span>Thank you for shopping at Poggo Animations</span>
+</div>
 
 
 

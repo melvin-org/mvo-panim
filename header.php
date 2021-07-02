@@ -3,6 +3,9 @@
 
 <head>
 	<link rel="stylesheet" href="style.css" type="text/css">
+  <link rel = "icon" href = "poggo-icon.png" type = "image/x-icon">
+  <link rel="stylesheet" href="bower_components/bootstrap-5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
 	<title>Poggo Animation</title>
 </head>
 <body>
@@ -16,9 +19,9 @@
 
   <!-- Right-aligned links -->
   <div class="topnav-right">
-  <a href="#account">Account</a>
-    <a href="#search">Search</a>
-    <a href="#cart">Cart</a>
+  <a href="account.php">Account</a>
+    <!-- <a href="#search">Search</a> -->
+    <a href="cart.php">Cart</a>
   </div>
   
 </div>
@@ -31,6 +34,7 @@
 </ul>
 </div>
  <hr>
- </header> 
+ </header>
+ <script src="bower_components/bootstrap-5/js/bootstrap.bundle.js"></script> 
 </body>
 </html>

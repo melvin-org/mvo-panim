@@ -16,7 +16,9 @@ if (isset($_POST['login'])) {
     if ($result->num_rows > 0) {
         $row = mysqli_fetch_assoc($result);
         $_SESSION['first_name'] = $row['first_name'];
-        echo "<script language='javascript'>window.alert('logged in.');window.location='home.php';</script>";
+        $_SESSION['full_name'] = $row['first_name']." ".$row['last_name'];
+        $_SESSION['cust_id'] = $row['customer_id'];
+        echo "<script language='javascript'>window.location='home.php';</script>";
     } else {
         echo "<script>alert('Whoops! Email or Password is Wrong.')</script>";
     }
@@ -24,6 +26,9 @@ if (isset($_POST['login'])) {
 
 ?>
 <html>
+<?php
+include 'header.php'; 
+?>
 
 <head>
     <link rel="stylesheet" href="style.css" type="text/css">
@@ -31,10 +36,6 @@ if (isset($_POST['login'])) {
 
 <body>
 
-    <!--Get header -->
-    <?php
-    include 'header.php';
-    ?>
 
     <!-- page wrapper class -->
     <div class="page-wrapper">

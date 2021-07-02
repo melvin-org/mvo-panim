@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html>
+<?php
+session_start();
+include 'header.php'; 
+?>
 
 <head>
     <link rel="stylesheet" href="style.css" type="text/css">
     <style>
         .product-box {
-            width: 300px;
+            width: 340px;
             height: 450px;
             padding: 10px 20px;
             margin: 0 50px 100px 50px;
@@ -24,10 +28,6 @@
 
 <body>
 
-    <!--Get header -->
-    <?php
-    include 'header.php';
-    ?>
 
     <!-- page wrapper class -->
     <div class="page-wrapper">

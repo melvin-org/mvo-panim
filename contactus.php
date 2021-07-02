@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <html>
+<?php
+session_start();
+include 'header.php'; 
+?>
 
 <head>
     <link rel="stylesheet" href="style.css" type="text/css">
@@ -7,10 +11,6 @@
 
 <body>
 
-    <!--Get header -->
-    <?php
-    include 'header.php';
-    ?>
 
     <!-- page wrapper class -->
     <div class="page-wrapper">

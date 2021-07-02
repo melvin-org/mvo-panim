@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <html>
+<?php
+session_start();
+include 'header.php'; 
+?>
 
 <head>
     <link rel="stylesheet" href="style.css" type="text/css">
@@ -32,7 +36,7 @@
         }
 
         .product-box {
-            width: 250px;
+            width: 290px;
             height: 380px;
             padding: 10px 20px;
             margin: 0 50px 100px 50px;
@@ -44,7 +48,7 @@
         }
 
         .search-container {
-            right: 0px;
+            right: 15px;
             position: absolute;
             background-color: #F5F5F5;
             padding: 10px;
@@ -94,10 +98,6 @@
 
 <body>
 
-    <!--Get header -->
-    <?php
-    include 'header.php';
-    ?>
 
     <!-- page wrapper class -->
     <div class="page-wrapper">

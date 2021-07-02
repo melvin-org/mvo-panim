@@ -1,5 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+session_start();
+include 'header.php'; 
+
+$con = mysqli_connect("localhost", "admin", null, "pganim");
+$queryCollection = "SELECT * FROM collections WHERE homepage = 1"; 
+$collectionResult = mysqli_query($con, $queryCollection);
+
+
+?>
 
 <head>
   <meta charset="UTF-8">
@@ -14,10 +24,6 @@
 
 <body>
 
-  <?php
-  include 'header.php';
-  ?>
-
   <div class="page-wrapper quicksand-font">
 
     <section id="home">
@@ -29,28 +35,23 @@
     </section>
     <br>
     <section id="featured" class="w-100">
+      <div class="container text-center mt-5 py-5">
+        <h3>Browse our Collections!</h3>
+        <hr class="mx-auto">
+        <p>Get excited with our collections.</p>
+      </div>
       <div class="row p-0 m-0">
-        <div class="f1 col-lg-4 col-md-12 col-12 p-0">
-          <img class="img-fluid" src="img/shirt.png" alt="">
-          <div class="details">
-            <h2>Pocket Poggo T-Shirt</h2>
-            <button class="text-uppercase">Shop Now</button>
-          </div>
-        </div>
-        <div class="f1 col-lg-4 col-md-12 col-12 p-0">
-          <img class="img-fluid" src="img/bag.png" alt="">
-          <div class="details">
-            <h2>Pocket Drawstring Bag</h2>
-            <button class="text-uppercase">Shop Now</button>
-          </div>
-        </div>
-        <div class="f1 col-lg-4 col-md-12 col-12 p-0">
-          <img class="img-fluid" src="img/pouch.png" alt="">
-          <div class="details">
-            <h2>Pocket Pouches</h2>
-            <button class="text-uppercase">Shop Now</button>
-          </div>
-        </div>
+      <?php 
+        while ($collection = mysqli_fetch_array($collectionResult)) {
+          echo '<div class="f1 col-lg-4 col-md-12 col-12 p-0">';
+          echo '<a href="collection_list.php?colid='.$collection["collection_id"].'"><img class="img-fluid" src="images/'.$collection["image"].'" alt="" height="1024" width="1024">';
+          echo '<div class="details">';
+          echo '<button>SHOP NOW</button>';
+          echo '</div></a></div>';
+        }
+
+      ?>
+       
       </div>
     </section>
 
