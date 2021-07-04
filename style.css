@@ -203,6 +203,36 @@ ul#footer-payment li {
   display:inline;
 }
 
+.footer h1{
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.footer h2{
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.footer h3{
+  font-size: 1.4rem;
+  font-weight: 800;
+}
+
+.footer h4{
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.footer h5{
+  font-size: 1rem;
+  font-weight: 400;
+  color: black;
+}
+
+.footer h6{
+  color: white;
+}
+
 /* page css*/
 html, body{
 	height:100%;

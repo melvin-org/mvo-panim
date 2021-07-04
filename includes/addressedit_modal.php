@@ -28,29 +28,6 @@
                                 echo "<p>No Details Found.</p>";
                             } else {
                                 while ($row = mysqli_fetch_array($result)) {
-                                    // echo '<div class="form-floating">';
-                                    // echo '<input type="text" class="form-control" id="modalFirstName" placeholder="First Name" name="fname" value="'.$row['first_name'].'" >';
-                                    // echo '<label for="modalFirstName">First Name</label>';
-                                    // echo '</div>';
-
-                                    // echo '<br>';
-                                    // echo '<div class="form-floating">';
-                                    // echo '<input type="text" class="form-control" id="modalLastName" placeholder="Last Name" name="lname" value="'.$row['last_name'].'" >';
-                                    // echo '<label for="modalLastName">Last Name</label>';
-                                    // echo '</div>';
-
-                                    // echo '<br>';
-                                    // echo '<div class="form-floating">';
-                                    // echo '<input type="email" class="form-control" id="modalEmail" placeholder="Email" name="email" value="'.$row['email'].'" >';
-                                    // echo '<label for="modalEmail">Email</label>';
-                                    // echo '</div>';
-
-                                    // echo '<br>';
-                                    // echo '<div class="form-floating">';
-                                    // echo '<input type="text" class="form-control" id="modalNumber" placeholder="Number" name="mobileno" value="'.$row['mobile_number'].'" >';
-                                    // echo '<label for="modalNumber">Phone Number</label>';
-                                    // echo '</div>';
-
                                     echo '<br>';
                                     echo '<div class="form-floating">';
                                     echo '<textarea class="form-control" placeholder="Address" id="modalAddress" name="address" style="height: 100px">'.$row['address'].'</textarea>';

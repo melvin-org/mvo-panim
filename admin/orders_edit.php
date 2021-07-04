@@ -11,14 +11,12 @@ $con = mysqli_connect("localhost", "admin", null, "pganim");
 
 $id = $_GET['id'];
 $custid = $_GET['custid'];
-$prodid = $_GET['prodid'];
 
 $query = "SELECT * FROM orders where order_id = '$id'";
 $result = mysqli_query($con, $query);
 $queryCustomer = "SELECT * FROM customers where customer_id = $custid";
 $resultCustomer = mysqli_query($con, $queryCustomer);
-$queryProduct = "SELECT * FROM products where product_id = $prodid";
-$resultProduct = mysqli_query($con, $queryProduct);
+
 
 
 ?>
@@ -59,15 +57,15 @@ $resultProduct = mysqli_query($con, $queryProduct);
                         echo "</div>";
 
                         echo "<div class='form-group'>";
-                        foreach ($resultProduct as $products) {
-                            echo "<label for='product_name' class='col-sm-1 control-label'>Product Name: </label><div class='col-sm-3'><input type='text' class='form-control' id ='product_name' name='product_name' value='" . $products['product_name'] . "' readonly></div>";
-                        }
-                        echo "<label for='price' class='col-sm-2 control-label'>Price: </label><div class='col-sm-3'><input type='text' class='form-control' id ='price' name='price' value='" . $row['price'] . "' readonly></div>";
+                        // foreach ($resultProduct as $products) {
+                        //     echo "<label for='product_name' class='col-sm-1 control-label'>Product Name: </label><div class='col-sm-3'><input type='text' class='form-control' id ='product_name' name='product_name' value='" . $products['product_name'] . "' readonly></div>";
+                        // }
+                        echo "<label for='price' class='col-sm-1 control-label'>Price: </label><div class='col-sm-3'><input type='text' class='form-control' id ='price' name='price' value='" . $row['price'] . "' readonly></div>";
                         echo "</div>";
 
                         echo "<div class='form-group'>";
-                        echo "<label for='quantity' class='col-sm-1 control-label'>Quantity: </label><div class='col-sm-3'><input type='text' class='form-control' id ='quantity' name='quantity' value='" . $row['quantity'] . "'readonly></div>";
-                        echo "<label for='order_status' class='col-sm-2 control-label'>Order Status: </label><div class='col-sm-3'><input type='text' class='form-control' id ='order_status' name='order_status' value='" . $row['order_status'] . "' required></div>";
+                        // echo "<label for='quantity' class='col-sm-1 control-label'>Quantity: </label><div class='col-sm-3'><input type='text' class='form-control' id ='quantity' name='quantity' value='" . $row['quantity'] . "'readonly></div>";
+                        echo "<label for='order_status' class='col-sm-1 control-label'>Order Status: </label><div class='col-sm-3'><input type='text' class='form-control' id ='order_status' name='order_status' value='" . $row['order_status'] . "' required></div>";
                         echo "</div>";
 
 

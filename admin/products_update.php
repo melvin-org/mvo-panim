@@ -24,7 +24,10 @@ if(isset($_POST['update'])){
     
     if (!empty($filename)) {
         $ext = pathinfo($filename, PATHINFO_EXTENSION);
-        $new_filename = $pname . '.' . $ext;
+        $newfilename = preg_replace('/[^a-zA-Z0-9\']/', '-', $pname);
+        $newfilename = str_replace("'", '', $newfilename);
+        $new_filename = $newfilename . '.' . $ext;
+
         move_uploaded_file($_FILES['photo']['tmp_name'], '../images/' . $new_filename);
     } else {
         $new_filename = $_POST['photoName'];

@@ -25,13 +25,14 @@ include 'includes/addressedit_modal.php';
     $customerDetailResult = mysqli_query($con, $customerDetailQuery);
     $customerDetail = mysqli_fetch_array($customerDetailResult);
 
-    if(strpos(strtolower($customerDetail["address"]), 'sabah') !== false || strpos(strtolower($customerDetail["address"]), 'Sarawak') !== false ){
+    if(strpos(strtolower($customerDetail["address"]), 'sabah') !== false || strpos(strtolower($customerDetail["address"]), 'sarawak') !== false ){
         $deliveryFee = 10;
     } else{
         $deliveryFee = 7;
     }
 
     $total = $deliveryFee;
+    $_SESSION['deliveryFee'] = $deliveryFee;
 
     // $queryOrder = "SELECT * FROM ordedrs WHERE customer_id = $custid";
     // $resultOrder = mysqli_query($con, $queryOrder);
@@ -151,6 +152,7 @@ include 'includes/addressedit_modal.php';
                         echo '</div>';
                         $subtotal += ($products["price"] * $customerCart["quantity"]);
                         $total += ($products["price"] * $customerCart["quantity"]);
+                        $_SESSION['subtotal'] = $subtotal;
                     }
                     ?>
                     <hr>
@@ -197,6 +199,9 @@ include 'includes/addressedit_modal.php';
 
     <!--Get footer -->
     <?php
+    
+    $_SESSION['total'] = $total;
+
     include 'footer.php';
     ?>
     <script src="https://www.paypal.com/sdk/js?client-id=AUSyV6rEK-S34PK4yfYbhOb2KqWW9uDpYGB-Hnt8KHpc7Hvo8K5I5CrAnvNz-0xJy1MimuuavIt3QtXL&currency=MYR"></script>
@@ -220,9 +225,6 @@ include 'includes/addressedit_modal.php';
                 return actions.order.capture().then(function(payment) {
                     window.location = 'payment_success.php?pay=' + payment.id;
                 })
-            },
-            onCancel: function(data) {
-                window.location.replace("Oncancel.php")
             },
 
         }).render('#paypal-payment-button');

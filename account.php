@@ -5,21 +5,21 @@
 include 'includes/session.php';
 //Get header
 include 'header.php';
+include 'includes/orderdetails_modal.php';
 ?>
-
 
 <body>
 
 
     <?php
 
-    $con = $con = mysqli_connect("localhost", "admin", null, "pganim");
+    $con = mysqli_connect("localhost", "admin", null, "pganim");
 
     $custid = $_SESSION['cust_id'];
     $queryCust = "SELECT * FROM customers WHERE customer_id = $custid";
     $resultCust = mysqli_query($con, $queryCust);
 
-    $queryOrder = "SELECT * FROM ordedrs WHERE customer_id = $custid";
+    $queryOrder = "SELECT * FROM orders WHERE customer_id = $custid";
     $resultOrder = mysqli_query($con, $queryOrder);
 
     ?>
@@ -63,40 +63,57 @@ include 'header.php';
 
 
 
+
+
                         if (mysqli_num_rows($result) == 0) {
                             echo "<p>No orders found.</p>";
                         } else {
                         ?>
                             <table class="table table-bordered">
                                 <thead>
-                                    <th>Order ID:</th>
-                                    <th>Product Name:</th>
-                                    <th>Price</th>
-                                    <th>Quantity</th>
+                                    <th>Order ID</th>
+                                    <th>Product Details</th>
+                                    <th>Amount Paid</th>
+                                    <th>Transaction ID</th>
                                     <th>Order Status</th>
+                                    <th>Tracking Number</th>
                                 </thead>
                                 <tbody>
                                 <?php
 
                                 while ($row = mysqli_fetch_array($result)) {
 
-                                    $productID2Name = $row['product_id'];
-                                    $query3 = "SELECT product_name FROM products WHERE product_id = $productID2Name";
-                                    $result3 = mysqli_query($con, $query3);
+                                    $order_id = $row['order_id'];
 
-                                    foreach ($result3 as $product) {
-                                        echo "
+                                    $queryPayment = "SELECT * FROM payments WHERE order_id = $order_id";
+                                    $resultPayment = mysqli_query($con, $queryPayment);
+                                    $payment = mysqli_fetch_array($resultPayment);
+
+                                    $queryDelivery = "SELECT * FROM delivery WHERE order_id = $order_id";
+                                    $resultDelivery = mysqli_query($con, $queryDelivery);
+                                    $delivery = mysqli_fetch_array($resultDelivery);
+
+                                    echo "
                             <tr>
                             <td style='width:120px'>" . $row['order_id'] . "</td>
-                            <td style='width:150px'>" . $product['product_name'] . "</td>
+                            <td style='width:70px'><a href='#'  onclick='ShowModalProduct(" . $row['order_id'] . ")' id='orderdetails'><i class='fa fa-info-circle fa-lg'></i></a></td>
                             <td style='width:120px'>RM " . number_format($row['price'], 2) . "</td>
-                            <td style='width:120px'>" . $row['quantity'] . "</td>
-                            <td style='width:120px'>" . $row['order_status'] . "</td>
-                           </tr>
-                            ";
+                            <td style='width:120px'>" . $payment['txn_id'] . "</td>
+                            <td style='width:120px'>" . $row['order_status'] . "</td>";
+
+                                    if (!isset($delivery)) {
+                                        echo "<td style='width:120px'>N/A</td>
+                                        </tr>
+                                        ";
+                                    } else {
+
+                                        echo "<td style='width:120px'>" . $delivery['tracking_no'] . "</td>
+                                        </tr>
+                                        ";
                                     }
                                 }
                             }
+
 
 
                                 ?>
@@ -155,12 +172,36 @@ include 'header.php';
     </div>
 
 
-
     <!--Get footer -->
     <?php
     include 'footer.php';
     ?>
 
+    <script>
+        function ShowModalProduct(id) {
+
+            $.ajax({
+                url: 'getorderdetails.php',
+                type: 'get',
+                data: {
+                    'id': id
+                },
+                dataType: 'JSON',
+                success: function(response) {
+                    if (response == null) {
+                        alert('Details Not Found');
+                    } else {
+
+                        data = response;
+                        console.log(data);
+                        $('#orderdetails').modal('show');
+                        $('#orders').html(data);
+
+                    }
+                }
+            });
+        }
+    </script>
 </body>
 
 </html>

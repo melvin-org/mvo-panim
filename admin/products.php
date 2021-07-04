@@ -91,7 +91,7 @@ $con = mysqli_connect("localhost", "admin", null, "pganim");
                             <tr>
                             <td style='width:150px'>" . $row['product_name'] . "</td>
                             <td style='width:120px'>
-                              <img src='" . $image . "' height='40px' width='40px'>
+                              <img src='" . $image . "' height='60px' width='60px'>
                             </td>
                             <td>" . $row['description'] . "</td>
                             <td style='width:100px'>" . $categoryName . "</td>

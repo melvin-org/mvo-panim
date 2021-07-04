@@ -8,7 +8,7 @@ include 'header.php';
 <head>
     <link rel="stylesheet" href="style.css" type="text/css">
     <style>
-        #snackbar {
+        /* #snackbar {
             visibility: hidden;
             min-width: 250px;
             margin-left: -125px;
@@ -76,6 +76,44 @@ include 'header.php';
                 bottom: 0;
                 opacity: 0;
             }
+        } */
+
+        .add-button {
+            cursor: pointer;
+            border: none;
+            margin: 10px;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            background-color: #4BB7D4;
+            color: white;
+            font-size: 20px;
+            width: 40%;
+        }
+
+        .add-button:disabled {
+            border: 1px solid #4BB7D4;
+            background-color: transparent;
+            color: #4BB7D4;
+            cursor: no-drop;
+        }
+
+        .buynow-button {
+            cursor: pointer;
+            border: none;
+            margin: 10px;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            background-color: #F4BA4C;
+            color: white;
+            font-size: 20px;
+            width: 40%;
+        }
+
+        .buynow-button:disabled {
+            border: 1px solid #F4BA4C;
+            background-color: transparent;
+            color: #F4BA4C;
+            cursor: no-drop;
         }
     </style>
 </head>
@@ -95,7 +133,6 @@ include 'header.php';
                 echo '<script>window.alert("Failed, product already within cart!");</script>';
             } else if ($addResult == 'false') {
                 echo '<script>window.alert("Product successfully added to cart!");</script>';
-
             }
         }
         if (isset($_GET['pid'])) {
@@ -110,9 +147,6 @@ include 'header.php';
         <div class="quicksand-font" style="display: flex; width: 100%;">
             <div style="width: 50%; text-align: center;">
                 <?php
-                // if (mysqli_num_rows($productDetailResult) == 0 ) {
-                //     echo '<p>NO PRODUCT DETAILS FOUND.</p>';
-                // }
                 echo '<div style="margin: 30px 0"; width: 100%;>';
                 echo '<img src="images/' . $proddetail["img"] . '" alt="' . $proddetail["product_name"] . '" style="border: solid 1px #E3E3E3; padding: 10px; margin-bottom: 10px;" width="500">';
                 echo '</div>';
@@ -127,7 +161,7 @@ include 'header.php';
                 </div>
                 <div style="display: block; margin-bottom: 30px;">
                     <?php
-                    echo '<span style="font-size: 20px; color: #EE316D;">RM' . $proddetail["price"] . '</span>';
+                    echo '<span style="font-size: 20px; color: black;">RM' . $proddetail["price"] . '</span>';
                     ?>
                 </div>
                 <?php
@@ -143,8 +177,16 @@ include 'header.php';
                 // }
                 ?>
                 <div style="display: block; margin: 10px 0 10px 0;">
-                    <label for="product-number" style="display: inline-block; width: 100px;"><span style="font-size: 20px;">Amount </span></label>
-                    <input required id="product-number" name="product-number" type="number" value="1" min="1" style="width: 50px; height: 35px; font-size: 20px;">
+                    <?php
+                    if ($proddetail["stock_status"] == 0) {
+                        echo '<span>Product out of stock!</span>';
+                    } else {
+                        echo '<label for="product-number" style="display: inline-block; width: 100px;"><span style="font-size: 20px;">Amount </span></label>';
+                        echo '<input required id="product-number" name="product-number" type="number" value="1" min="1" max="' . $proddetail["stock_status"] . '" style="width: 50px; height: 35px; font-size: 20px;">';
+                        echo '<span style="font-size: 20px; color: #EE316D;">' . ' ' .$proddetail["stock_status"] . ' Left</span>';
+                    }
+
+                    ?>
                 </div>
                 <div style="display: block; margin: 50px 0 10px 0;">
                     <span style="font-size: 24px;"><b>Product Description</b></span>
@@ -155,8 +197,18 @@ include 'header.php';
                     ?>
                 </div>
                 <div style="display: block; margin-top: 50px;">
-                    <button id="addproduct" onclick="AddToCart(<?php echo $product_id ?>)" style="cursor: pointer; border: none; margin: 10px; padding-top: 20px; padding-bottom: 20px; background-color: #4BB7D4; color: white; font-size: 20px; width: 40%;">Add to Cart</button>
-                    <button style="cursor: pointer; border: none; margin: 10px; padding-top: 20px; padding-bottom: 20px; background-color: #F4BA4C; color: white; font-size: 20px; width: 40%;">Buy Now</button>
+                    <?php
+                    if (!isset($_SESSION['first_name'])) {
+
+                    ?>
+                        <a href="login.php"><button id="addproduct" style="cursor: pointer; border: none; margin: 10px; padding-top: 20px; padding-bottom: 20px; background-color: #4BB7D4; color: white; font-size: 20px; width: 40%;">Add to Cart</button></a>
+                        <a href="login.php"> <button style="cursor: pointer; border: none; margin: 10px; padding-top: 20px; padding-bottom: 20px; background-color: #F4BA4C; color: white; font-size: 20px; width: 40%;">Buy Now</button></a>
+                    <?php
+                    } else {
+                    ?>
+                        <button id="addproduct" onclick="AddToCart(<?php echo $product_id ?>, 'n')" style="cursor: pointer; border: none; margin: 10px; padding-top: 20px; padding-bottom: 20px; background-color: #4BB7D4; color: white; font-size: 20px; width: 40%;">Add to Cart</button>
+                        <button onclick="AddToCart(<?php echo $product_id ?>, 'y')" style="cursor: pointer; border: none; margin: 10px; padding-top: 20px; padding-bottom: 20px; background-color: #F4BA4C; color: white; font-size: 20px; width: 40%;">Buy Now</button>
+                    <?php } ?>
                 </div>
             </div>
         </div>
@@ -169,9 +221,9 @@ include 'header.php';
     </div>
 
     <script>
-        function AddToCart(pid) {
+        function AddToCart(pid, goCart) {
             var quant = document.getElementById('product-number').value;
-            var newUrl = 'add_to_cart.php?pid=' + pid + '&quant=' + quant;
+            var newUrl = 'add_to_cart.php?pid=' + pid + '&quant=' + quant + '&gocart=' + goCart;
             window.location.href = newUrl;
         }
     </script>

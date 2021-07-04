@@ -35,6 +35,7 @@
 </div>
  <hr>
  </header>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
  <script src="bower_components/bootstrap-5/js/bootstrap.bundle.js"></script> 
 </body>

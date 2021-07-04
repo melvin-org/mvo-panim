@@ -13,6 +13,7 @@ if (isset($_POST['add'])) {
     date_default_timezone_set("Asia/Kuala_Lumpur");
     $createdAt =  date('Y-m-d H:i:s');
     $updatedAt =  date('Y-m-d H:i:s');
+    $isNew = 0;
 
     $queryCount = "select max(product_id) from products";
     $resultCount = mysqli_query($con, $queryCount);
@@ -24,13 +25,16 @@ if (isset($_POST['add'])) {
 
     if (!empty($filename)) {
         $ext = pathinfo($filename, PATHINFO_EXTENSION);
-        $new_filename = $pname . '.' . $ext;
+        $newfilename = preg_replace('/[^a-zA-Z0-9\']/', '-', $pname);
+        $newfilename = str_replace("'", '', $newfilename);
+        $new_filename = $newfilename . '.' . $ext;
+
         move_uploaded_file($_FILES['photo']['tmp_name'], '../images/' . $new_filename);
     } else {
         $new_filename = '';
     }
 
-    $queryAdd = "INSERT INTO products values ('$pid', '$pname', '$pcat', '$pcollection','$new_filename','$pprice', '$pdesc', '$pstock', '$createdAt','$updatedAt')";
+    $queryAdd = "INSERT INTO products values ('$pid', '$pname', '$pcat', '$pcollection','$new_filename','$pprice', '$pdesc', '$pstock', '$isNew', '$createdAt','$updatedAt')";
     $resultAdd = mysqli_query($con, $queryAdd);
 
     if ($resultAdd > 0) {
