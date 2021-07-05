@@ -25,7 +25,7 @@ include 'includes/addressedit_modal.php';
     $customerDetailResult = mysqli_query($con, $customerDetailQuery);
     $customerDetail = mysqli_fetch_array($customerDetailResult);
 
-    if(strpos(strtolower($customerDetail["address"]), 'sabah') !== false || strpos(strtolower($customerDetail["address"]), 'Sarawak') !== false ){
+    if(strpos(strtolower($customerDetail["address"]), 'sabah') !== false || strpos(strtolower($customerDetail["address"]), 'arawak') !== false ){
         $deliveryFee = 10;
     } else{
         $deliveryFee = 7;

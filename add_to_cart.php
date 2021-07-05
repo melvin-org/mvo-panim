@@ -7,11 +7,11 @@ $exist = false;
 $pid = $_GET['pid'];
 $custid = $_SESSION['cust_id'];
 $quantity = $_GET['quant'];
-
+$goCart = $_GET['gocart'];
 $queryCartProducts = "SELECT * FROM cart WHERE customer_id = $custid";
 $cartProductResult = mysqli_query($con, $queryCartProducts);
 
-while($cartProduct = mysqli_fetch_array($cartProductResult)) {
+while ($cartProduct = mysqli_fetch_array($cartProductResult)) {
     if ($cartProduct['product_id'] == $pid) {
         $exist = true;
     }
@@ -24,13 +24,13 @@ if ($exist) {
     while ($row = mysqli_fetch_array($resultCount)) {
         $cartid = $row["max(cart_id)"] + 1;
     }
-
     $queryAdd = "INSERT INTO cart VALUES ('$cartid', '$pid', '$custid', '$quantity')";
     $resultAdd = mysqli_query($con, $queryAdd);
-        
-    header('location: product_details.php?pid=' . $pid . '&ae=false');
+
+    if ($goCart == 'y') {
+        header('location: cart.php');
+    } else {
+        header('location: product_details.php?pid=' . $pid . '&ae=false');
+    }
 }
 mysqli_close($con);
-
-
-?>
