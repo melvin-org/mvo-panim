@@ -32,10 +32,10 @@ include 'header.php';
                     </tr>
                     <tr>
                         <td style="width: 300px;">
-                            <input style="width: 100%; height: 30px;" type="text" id="name" name="name" placeholder="Name..." required>
+                            <input style="width: 100%; height: 30px;" type="text" id="fname" name="fname" placeholder="Name..." required>
                         </td>
                         <td style="width: 300px; padding-left: 30px;">
-                            <input style="width: 100%; height: 30px;" type="text" id="phoneNumber" name="phoneNumber" placeholder="Phone Number..." required>
+                            <input style="width: 100%; height: 30px;" type="text" id="fphoneNumber" name="fphoneNumber" placeholder="Phone Number..." required>
                         </td>
                     </tr>
                     <tr>
@@ -48,7 +48,7 @@ include 'header.php';
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <input style="width: 100%; height: 30px;" type="text" id="email" name="email" placeholder="Email..." required>
+                            <input style="width: 100%; height: 30px;" type="text" id="femail" name="femail" placeholder="Email..." required>
                         </td>
                     </tr>
                     <tr>
@@ -59,7 +59,7 @@ include 'header.php';
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <textarea style="width: 100%; height: 100px; resize: none;" type="text" id="message" name="message" placeholder="Your message / feedback..." required></textarea>
+                            <textarea style="width: 100%; height: 100px; resize: none;" type="text" id="fdescription" name="fdescription" placeholder="Your message / feedback..." required></textarea>
                         </td>
                     </tr>
                 </table>
