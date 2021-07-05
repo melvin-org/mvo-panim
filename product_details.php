@@ -130,9 +130,9 @@ include 'header.php';
         if (isset($_GET['ae'])) {
             $addResult = $_GET['ae'];
             if ($addResult == 'true') {
-                echo '<script>window.alert("Failed, product already within cart...");</script>';
+                echo '<script>window.alert("Failed, product already within cart!");</script>';
             } else if ($addResult == 'false') {
-                echo '<script>window.alert("Product successfully added to cart...");</script>';
+                echo '<script>window.alert("Product successfully added to cart!");</script>';
             }
         }
         if (isset($_GET['pid'])) {
@@ -161,7 +161,7 @@ include 'header.php';
                 </div>
                 <div style="display: block; margin-bottom: 30px;">
                     <?php
-                    echo '<span style="font-size: 20px; color: #EE316D;">RM' . $proddetail["price"] . '</span>';
+                    echo '<span style="font-size: 20px; color: black;">RM' . $proddetail["price"] . '</span>';
                     ?>
                 </div>
                 <?php
@@ -183,7 +183,7 @@ include 'header.php';
                     } else {
                         echo '<label for="product-number" style="display: inline-block; width: 100px;"><span style="font-size: 20px;">Amount </span></label>';
                         echo '<input required id="product-number" name="product-number" type="number" value="1" min="1" max="' . $proddetail["stock_status"] . '" style="width: 50px; height: 35px; font-size: 20px;">';
-                        echo '<span style="font-size: 20px; color: #EE316D;">' . $proddetail["stock_status"] . ' Left</span>';
+                        echo '<span style="font-size: 20px; color: #EE316D;">' . ' ' .$proddetail["stock_status"] . ' Left</span>';
                     }
 
                     ?>

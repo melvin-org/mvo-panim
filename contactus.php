@@ -24,7 +24,7 @@ include 'header.php';
             <div style="width: 100%; text-align:center; padding-bottom: 50px;">
                 <span style="font-size: 18px;">If you have any issues or questions regarding your purchase from our site, please contact us with the form below. Thanks!</span>
             </div>
-            <form>
+            <form action ="contactus_add.php" method="POST">
                 <table style="margin-left: auto; margin-right: auto;">
                     <tr>
                         <td style="padding-left: 5px;">Name</td>

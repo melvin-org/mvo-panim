@@ -43,7 +43,7 @@ $collectionResult = mysqli_query($con, $queryCollection);
       <div class="row p-0 m-0">
       <?php 
         while ($collection = mysqli_fetch_array($collectionResult)) {
-          echo '<div class="f1 col-lg-4 col-md-12 col-12 p-0">';
+          echo '<div class="f1 col-lg-4 col-md-12 col-12 p-30">';
           echo '<a href="collection_list.php?colid='.$collection["collection_id"].'"><img class="img-fluid" src="images/'.$collection["image"].'" alt="" height="1024" width="1024">';
           echo '<div class="details">';
           echo '<button>SHOP NOW</button>';
@@ -62,30 +62,21 @@ $collectionResult = mysqli_query($con, $queryCollection);
         <p>Get the latest and exclusive Poggo merchandise release.</p>
       </div>
       <div class="row mx-auto container-fluid">
-        <div class="product text-center col-lg-3 col-md-4 col-12">
-          <img class="img-fluid mb-3" src="img/product1.png" alt="">
-          <h5 class="name">POGGO Patches</h5>
-          <h4 class="price">RM 6.00</h4>
-          <button class="addtoCart">Add to cart</button>
-        </div>
-        <div class="product text-center col-lg-3 col-md-4 col-12">
-          <img class="img-fluid mb-3" src="img/product1.png" alt="">
-          <h5 class="name">POGGO Patches 1</h5>
-          <h4 class="price">RM 8.00</h4>
-          <button class="addtoCart">Add to cart</button>
-        </div>
-        <div class="product text-center col-lg-3 col-md-4 col-12">
-          <img class="img-fluid mb-3" src="img/product1.png" alt="">
-          <h5 class="name">POGGO Patches 2</h5>
-          <h4 class="price">RM 10.00</h4>
-          <button class="addtoCart">Add to cart</button>
-        </div>
-        <div class="product text-center col-lg-3 col-md-4 col-12">
-          <img class="img-fluid mb-3" src="img/product1.png" alt="">
-          <h5 class="name">POGGO Patches 3</h5>
-          <h4 class="price">RM 12.00</h4>
-          <button class="addtoCart">Add to cart</button>
-        </div>
+        <?php
+            $queryIsNew = "SELECT * FROM products WHERE isNew = 1";
+            $resultIsNew = mysqli_query($con, $queryIsNew);
+
+            while($row = mysqli_fetch_array($resultIsNew)){
+              echo '<div class="product text-center col-lg-3 col-md-4 col-12">';
+              echo '<a href="product_details.php?pid='.$row["product_id"].'"><img class="img-fluid mb-3" src="images/'.$row['img'].'"  height="602" width="602" alt="product picture">';
+              echo '<h5 class="name">'.$row['product_name'].'</h5>';
+              echo '<h4 class="price">RM '.$row['price'].'</h4>';
+              echo '<button class="addtoCart">Shop Now</button>';
+              echo '</a></div>';
+          
+            }
+        ?>
+
       </div>
     </section>
 

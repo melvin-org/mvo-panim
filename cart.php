@@ -88,16 +88,6 @@ include 'header.php';
             height: 2rem;
             color: #495057;
         }
-
-        @media not all and (min-resolution:.001dpcm) {
-            @supports (-webkit-appearance: none) and (stroke-color:transparent) {
-
-                .number-input.def-number-input.safari_only button:before,
-                .number-input.def-number-input.safari_only button:after {
-                    margin-top: -.3rem;
-                }
-            }
-        }
     </style>
 
 </head>
@@ -180,7 +170,7 @@ include 'header.php';
                     echo '<button onclick="addQuantity(' . $cart["cart_id"] . ', ' . $cart["quantity"] . ', ' . $products["stock_status"] . ') " class="plus"></button>';
                     echo '</div>';
 
-                    echo '<span style="font-size: 20px; color: #EE316D;"> ' . $products["stock_status"] . ' </span>';
+                    echo '<span style="font-size: 20px; color: #EE316D;"> ' . $products["stock_status"] . ' Left</span>';
                     echo '</div>';
                     echo '<div style="width: 15%; padding-top: 10px; font-size: 20px; color: #696969;">';
                     echo 'RM<span class="ctotal">' . $cart["quantity"] * $products['price'] . '</span>';
