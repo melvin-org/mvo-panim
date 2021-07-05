@@ -119,16 +119,16 @@ include 'header.php';
             } else {
             ?>
                 <div style="width: 100%; display: flex; font-size: 20px; padding: 60px 0 10px 0;">
-                    <div style="width: 55%; padding-left: 20px;">
+                    <div style="width: 65%; padding-left: 20px;">
                         <span>Product</span>
                     </div>
-                    <div style="width: 15%;">
+                    <div style="width: 10%;">
                         <span>Price</span>
                     </div>
                     <div style="width: 15%;">
                         <span>Quantity</span>
                     </div>
-                    <div style="width: 15%;">
+                    <div style="width: 10%;">
                         <span>Total</span>
                     </div>
                 </div>
@@ -142,7 +142,7 @@ include 'header.php';
                     $subtotal = $subtotal + ($cart["quantity"] * $products['price']);
 
                     echo '<div style="width: 100%; display: flex; padding-bottom: 20px;">';
-                    echo '<div style="width: 55%; display: flex; padding-left: 20px;">';
+                    echo '<div style="width: 65%; display: flex; padding-left: 20px;">';
                     echo '<div style="width: 20%">';
                     echo '<img src="images/' . $products["img"] . '" alt="' . $products["product_name"] . '" width="150" height="150">';
                     echo '</div>';
@@ -157,7 +157,7 @@ include 'header.php';
 
                     echo '</div>';
                     echo '</div>';
-                    echo '<div style="width: 15%; padding-top: 10px;">';
+                    echo '<div style="width: 10%; padding-top: 10px;">';
                     echo '<span style="font-size: 20px; color: #696969;">' . $products["price"] . '</span>';
                     echo '<input type="hidden" class="cprice" value="' . $products["price"] . '">';
                     echo '<input type="hidden" name="cpid" value="' . $products["product_id"] . '">';
@@ -172,7 +172,7 @@ include 'header.php';
 
                     echo '<span style="font-size: 20px; color: #EE316D;"> ' . $products["stock_status"] . ' Left</span>';
                     echo '</div>';
-                    echo '<div style="width: 15%; padding-top: 10px; font-size: 20px; color: #696969;">';
+                    echo '<div style="width: 10%; padding-top: 10px; font-size: 20px; color: #696969;">';
                     echo 'RM<span class="ctotal">' . $cart["quantity"] * $products['price'] . '</span>';
                     echo '</div>';
                     echo '</div>';
@@ -180,20 +180,20 @@ include 'header.php';
                 ?>
 
                 <div style="width: 100%; display: flex;">
-                    <div style="width: 70%;"></div>
+                    <div style="width: 75%;"></div>
                     <div style="width: 15%; font-size: 20px; padding-right: 20px;">
                         <span>Subtotal</span>
                     </div>
-                    <div style="width: 15%; font-size: 20px; padding-right: 20px;">
+                    <div style="width: 10%; font-size: 20px; padding-right: 20px;">
                         RM<span id="csubtotal" class="csubtotal"><?php echo $subtotal ?></span>
                     </div>
                 </div>
                 <div style="width: 100%; display: flex; padding-top: 50px; padding-right: 20px;">
-                    <div style="width: 70%;"></div>
+                    <div style="width: 75%;"></div>
                     <div style="width: 13%; padding-top: 20px;">
                         <a href="product_list.php">Continue Shopping</span></a>
                     </div>
-                    <div style="width: 17%; font-size: 20px;">
+                    <div style="width: 12%; font-size: 20px;">
                         <form action="checkout.php" method="post">
                             <input type="hidden" id="totalFromCart" name="totalFromCart" value="<?php echo $subtotal ?>">
                             <button class="checkout-button">
