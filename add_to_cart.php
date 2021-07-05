@@ -8,6 +8,16 @@ $pid = $_GET['pid'];
 $custid = $_SESSION['cust_id'];
 $quantity = $_GET['quant'];
 $goCart = $_GET['gocart'];
+
+$queryProductStock = "SELECT * FROM products WHERE product_id = $pid";
+$queryProductResult = mysqli_query($con, $queryProductStock);
+while ($productStock = mysqli_fetch_array($queryProductResult)) {
+    if ($quantity > $productStock['stock_status']) {
+        $quantity = $productStock['stock_status'];
+    }
+}
+
+
 $queryCartProducts = "SELECT * FROM cart WHERE customer_id = $custid";
 $cartProductResult = mysqli_query($con, $queryCartProducts);
 

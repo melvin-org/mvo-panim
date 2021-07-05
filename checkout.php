@@ -36,10 +36,14 @@ include 'includes/addressedit_modal.php';
     $discountAvailability = 'valid';
     $discountMinSpend = 'valid';
     if (isset($_POST['totalFromCart'])) {
+        $_SESSION['totalFromCart'] = $_POST['totalFromCart'];
         $subtotal = $_POST['totalFromCart'];
     }
-    if (isset($_POST['discountCode'])) {
+    if (isset($_SESSION['totalFromCart'])){
+        $subtotal = $_SESSION['totalFromCart'];
+    }
 
+    if (isset($_POST['discountCode'])) {
         $discountCode = $_POST['discountCode'];
         $getDiscountQuery = "SELECT * FROM discount_codes WHERE discount_code = '$discountCode'";
         $getDiscountResult = mysqli_query($con, $getDiscountQuery);
