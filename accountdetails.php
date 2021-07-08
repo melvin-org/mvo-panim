@@ -73,7 +73,7 @@ include 'includes/accountedit_modal.php';
 
 
                             echo "<div class='row'>";
-                            echo "<div class='col-7'>Address: " . $row['address'] . "</div>";
+                            echo "<br><div class='col-7'>Address: " . $row['address'] . "</div>";
                             echo "<br>&nbsp;<br>";
                             echo "</div>";
                         }

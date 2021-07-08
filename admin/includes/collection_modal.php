@@ -45,6 +45,12 @@
                         <input type="text" class="form-control" id="collectionname" name="collectionname" required>
                     </div>
 
+                    <label for="photo" class="col-sm-1 control-label">Photo</label>
+
+                    <div class="col-sm-3">
+                        <input type="file" class ="form-control" id="photo" name="photo">
+                    </div>
+
                 </div>
 
                 <div class="form-group">

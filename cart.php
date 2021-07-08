@@ -88,7 +88,6 @@ include 'header.php';
             height: 2rem;
             color: #495057;
         }
-
     </style>
 
 </head>
@@ -195,11 +194,12 @@ include 'header.php';
                         <a href="product_list.php">Continue Shopping</span></a>
                     </div>
                     <div style="width: 17%; font-size: 20px;">
-                        <a href="checkout.php">
+                        <form action="checkout.php" method="post">
+                            <input type="hidden" id="totalFromCart" name="totalFromCart" value="<?php echo $subtotal ?>">
                             <button class="checkout-button">
                                 Checkout
                             </button>
-                        </a>
+                        </form>
                     </div>
                 </div>
             <?php
@@ -211,7 +211,7 @@ include 'header.php';
     </div>
 
     <script>
-      function minusQuantity(cartid, currentQuantity) {
+        function minusQuantity(cartid, currentQuantity) {
             newQuantity = currentQuantity - 1;
             if (newQuantity == 0) {
                 var newUrl = 'cart_delete.php?cartid=' + cartid;

@@ -43,6 +43,7 @@ $con = mysqli_connect("localhost", "admin", null, "pganim");
                                             <th>Email</th>
                                             <th>Phone No</th>
                                             <th>Description</th>
+                                            <th>Tools</th>
                                         </thead>
                                         <tbody>
                                             <?php
@@ -63,8 +64,13 @@ $con = mysqli_connect("localhost", "admin", null, "pganim");
                             <td style='width:150px'>" . $row['name'] . "</td>
                             <td style='width:150px'>" . $row['email'] . "</td>
                             <td style='width:150px'>" . $row['phone_number'] . "</td>
-                            <td>" . $row['description'] . "</td>
-                           </tr>
+                            <td style='width:150px'>" . $row['description'] . "</td>";
+                            if($_SESSION['role'] == 'Manager'){
+                           echo" <td style='width:150px'>
+                              <button onclick='deleteFeedback(" . $row['feedback_id'] . ")' class='btn btn-danger btn-sm delete btn-flat' data-id='" . $row['feedback_id'] . "'><i class='fa fa-trash'></i> Delete</button>
+                            </td>";
+                            }
+                           echo "</tr>
                             ";
                                                         }
                                             }
@@ -84,6 +90,13 @@ $con = mysqli_connect("localhost", "admin", null, "pganim");
         </div>
     </div>
     <script>
+
+function deleteFeedback(feedbackID) {
+      var result = confirm("Are you sure you would like to DELETE this feedback?");
+      if (result) {
+        window.location = "feedbacks_delete.php?id=" + feedbackID;
+      }
+    }
 
 function searchFunction() {
   var input, filter, table, tr, td, i;

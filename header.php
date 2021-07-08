@@ -19,6 +19,7 @@
 
   <!-- Right-aligned links -->
   <div class="topnav-right">
+  <a href="home.php">Home</a>
   <a href="account.php">Account</a>
     <!-- <a href="#search">Search</a> -->
     <a href="cart.php">Cart</a>

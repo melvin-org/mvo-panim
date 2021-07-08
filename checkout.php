@@ -13,29 +13,55 @@ include 'includes/addressedit_modal.php';
 
 
     <?php
-
     $con = $con = mysqli_connect("localhost", "admin", null, "pganim");
     $custid = $_SESSION['cust_id'];
-    $subtotal = 0;
 
     $getCustomerOrderCart = "SELECT * FROM cart WHERE customer_id = $custid";
     $customerCartResult = mysqli_query($con, $getCustomerOrderCart);
-
     $customerDetailQuery = "SELECT * FROM customers WHERE customer_id = $custid";
     $customerDetailResult = mysqli_query($con, $customerDetailQuery);
     $customerDetail = mysqli_fetch_array($customerDetailResult);
 
-    if(strpos(strtolower($customerDetail["address"]), 'sabah') !== false || strpos(strtolower($customerDetail["address"]), 'sarawak') !== false ){
+    if (strpos(strtolower($customerDetail["address"]), 'sabah') !== false || strpos(strtolower($customerDetail["address"]), 'sarawak') !== false) {
         $deliveryFee = 10;
-    } else{
+    } else {
         $deliveryFee = 7;
     }
 
     $total = $deliveryFee;
     $_SESSION['deliveryFee'] = $deliveryFee;
 
-    // $queryOrder = "SELECT * FROM ordedrs WHERE customer_id = $custid";
-    // $resultOrder = mysqli_query($con, $queryOrder);
+    $discountCode = '';
+    $discountValidity = 'valid';
+    $discountAvailability = 'valid';
+    $discountMinSpend = 'valid';
+    if (isset($_POST['totalFromCart'])) {
+        $_SESSION['totalFromCart'] = $_POST['totalFromCart'];
+        $subtotal = $_POST['totalFromCart'];
+    }
+    if (isset($_SESSION['totalFromCart'])){
+        $subtotal = $_SESSION['totalFromCart'];
+    }
+
+    if (isset($_POST['discountCode'])) {
+        $discountCode = $_POST['discountCode'];
+        $getDiscountQuery = "SELECT * FROM discount_codes WHERE discount_code = '$discountCode'";
+        $getDiscountResult = mysqli_query($con, $getDiscountQuery);
+
+        if (!$getDiscountResult || mysqli_num_rows($getDiscountResult) == 0) {
+            $discountValidity = 'invalid';
+        } else {
+            $discount = mysqli_fetch_array($getDiscountResult);
+            if ($discount['validity'] == false) {
+                $discountAvailability = 'invalid';
+            }
+            if ($subtotal < $discount['min_spend']) {
+                $discountMinSpend = 'invalid';
+            }
+        }
+    }
+
+
 
     ?>
 
@@ -119,14 +145,30 @@ include 'includes/addressedit_modal.php';
 
                     <hr>
 
-                    <!-- <span><b>Payment Methods</b></span>
+                    <span><b>Do you have a Discount Code?</b></span>
                     <div class="row pt-2">
-                        <input type="radio" class="btn-check" name="options-outlined" id="success-outlined" autocomplete="off" checked>
-                        <label class="btn btn-outline-success" for="success-outlined">Checked success radio</label>
-
-                        <input type="radio" class="btn-check" name="options-outlined" id="danger-outlined" autocomplete="off">
-                        <label class="btn btn-outline-danger" for="danger-outlined">Danger radio</label>
-                    </div> -->
+                        <div class="col-12">
+                            <form action="checkout.php" method="post">
+                            <input type="hidden" id="totalFromCart" name="totalFromCart" value="<?php echo $subtotal ?>">
+                                <input type="text" class="form-control" id="discountCode" name="discountCode" value="<?php echo $discountCode ?>" placeholder="Enter Discount Code">
+                                <?php
+                                if (isset($discount) && $discountAvailability != 'invalid' && $discountMinSpend != 'invalid') {
+                                    echo '<div class="pt-2"><span class="text-success">Discount Applied</span></div>';
+                                    echo '<button class="btn btn-outline-danger mt-2" onclick="reseturl()">Remove Discount Code</button>';
+                                } else {
+                                    if ($discountValidity == 'invalid' && $discountCode != null) {
+                                        echo '<div class="pt-2"><span class="text-danger">Invalid Discount Code</span></div>';
+                                    } else if ($discountAvailability == 'invalid') {
+                                        echo '<div class="pt-2"><span class="text-danger">Discount Code No Longer Available</span></div>';
+                                    } else if ($discountMinSpend == 'invalid') {
+                                        echo '<div class="pt-2"><span class="text-danger">Minimum Spend for this Discount Code is RM' . $discount["min_spend"] . '</span></div>';
+                                    }
+                                    echo '<button class="btn btn-outline-success mt-2">Redeem Discount Code</button>';
+                                }
+                                ?>
+                            </form>
+                        </div>
+                    </div>
 
                 </div>
                 <div class="col-1"></div>
@@ -150,7 +192,6 @@ include 'includes/addressedit_modal.php';
                         echo '<span class="float-end">RM' . number_format(($products["price"] * $customerCart["quantity"]), 2, '.', '') . '</span>';
                         echo '</div>';
                         echo '</div>';
-                        $subtotal += ($products["price"] * $customerCart["quantity"]);
                         $total += ($products["price"] * $customerCart["quantity"]);
                         $_SESSION['subtotal'] = $subtotal;
                     }
@@ -172,6 +213,20 @@ include 'includes/addressedit_modal.php';
                             <span class="float-end">RM<?php echo number_format($deliveryFee, 2, '.', '') ?></span>
                         </div>
                     </div>
+                    <?php
+
+                    if (isset($discount) && $discountAvailability != 'invalid' && $discountMinSpend != 'invalid') {
+                        $discountAmount = $subtotal * $discount["discount_percentage"] / 100;
+                        $total = $total - $discountAmount;
+                        echo '<div class="row">';
+                        echo '<div class="col-9">';
+                        echo '<span>Discount</span>';
+                        echo '</div>';
+                        echo '<div class="col-3">';
+                        echo '<span class="float-end">RM' . number_format($discountAmount, 2, '.', '') . '</span>';
+                        echo '</div></div>';
+                    }
+                    ?>
                     <div class="row mb-5">
                         <div class="col-9">
                             <span><b>Total<small> (Including Delivery Fee)</small></b></span>
@@ -199,7 +254,7 @@ include 'includes/addressedit_modal.php';
 
     <!--Get footer -->
     <?php
-    
+
     $_SESSION['total'] = $total;
 
     include 'footer.php';
@@ -228,6 +283,11 @@ include 'includes/addressedit_modal.php';
             },
 
         }).render('#paypal-payment-button');
+
+        function reseturl() {
+            document.getElementById('discountCode').value = null;
+            location.reload();
+        }
     </script>
 </body>
 
