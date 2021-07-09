@@ -40,7 +40,7 @@ $collectionResult = mysqli_query($con, $queryCollection);
         <hr class="mx-auto">
         <p>Get excited with our collections.</p>
       </div>
-      <div class="row p-0 m-0">
+      <div class="row p-0 m-0 d-flex justify-content-center">
         <?php
         $i = 0;
         while ($collection = mysqli_fetch_array($collectionResult)) {
@@ -64,7 +64,7 @@ $collectionResult = mysqli_query($con, $queryCollection);
         <hr class="mx-auto">
         <p>Get the latest and exclusive Poggo merchandise release.</p>
       </div>
-      <div class="row mx-auto container-fluid">
+      <div class="row mx-auto container-fluid d-flex justify-content-center">
         <?php
         $queryIsNew = "SELECT * FROM products WHERE isNew = 1";
         $resultIsNew = mysqli_query($con, $queryIsNew);
