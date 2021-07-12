@@ -410,6 +410,9 @@ $resultfrCart = mysqli_query($con, $queryfrCart);
 
 <script>
 
+$(window).on('load', function() {
+        $('#tqpopup').modal('show');
+    });
 document.getElementById("doPrint").addEventListener("click", function() {
      var printContents = document.getElementById('printDiv').innerHTML;
      var originalContents = document.body.innerHTML;
@@ -418,9 +421,6 @@ document.getElementById("doPrint").addEventListener("click", function() {
      document.body.innerHTML = originalContents;
 });
 
-$(window).on('load', function() {
-        $('#tqpopup').modal('show');
-    });
 
 </script>
 
