@@ -32,7 +32,6 @@ $con = mysqli_connect("localhost", "admin", null, "pganim");
           <div class="col-xs-12">
             <div class="box">
               <div class="box-header with-border">
-                <a href="#" class="btn btn-primary btn-sm btn-flat" id="adddelivery" ><i class="fa fa-plus"></i> New</a>
                 <div class="pull-right">
                                     <input type="search" onkeyup="searchFunction()" id="search" class="form-control" name="search" placeholder="Search">
                                 </div>
@@ -95,12 +94,6 @@ include 'includes/delivery_modal.php';
 ?>
 
 <script>
-
-document.getElementById('adddelivery').addEventListener('click',
-function(){
-  document.querySelector('.bg-modal-addDelivery').style.display = 'flex';
-
-});
 
 function deleteDeli(deliveryID){
   var result = confirm("Are you sure you would like to DELETE this delivery?");

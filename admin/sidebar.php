@@ -40,6 +40,7 @@
       <li><a href="products.php"><i class="fa fa-file-o"></i> <span>Product List</span></a></li>
       <li><a href="collections.php"><i class="fa fa-star"></i> <span>Collections</span></a></li>
       <li><a href="category.php"><i class="fa fa-list-alt"></i> <span>Categories</span></a></li>
+      <li><a href="discountcodes.php"><i class="fa fa-percent"></i> <span>Discount Codes</span></a></li>
       <li><a href="deliveries.php"><i class="fa fa-truck"></i> <span>Deliveries</span></a></li>
       <li><a href="payments.php"><i class="fa fa-barcode"></i> <span>Payments</span></a></li>
       <li><a href="feedbacks.php"><i class="fa fa-comments-o"></i> <span>Feedbacks</span></a></li>

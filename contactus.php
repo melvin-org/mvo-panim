@@ -2,7 +2,7 @@
 <html>
 <?php
 session_start();
-include 'header.php'; 
+include 'header.php';
 ?>
 
 <head>
@@ -22,9 +22,42 @@ include 'header.php';
                 <span style="font-size: 24px;">Contact Us</span>
             </div>
             <div style="width: 100%; text-align:center; padding-bottom: 50px;">
-                <span style="font-size: 18px;">If you have any issues or questions regarding your purchase from our site, please contact us with the form below. Thanks!</span>
+
+                <?php
+                if(isset($_POST['send'])){
+                $con = mysqli_connect("localhost", "admin", null, "pganim");
+
+                $fname = $_POST['fname'];
+                $femail = $_POST['femail'];
+                $fphoneNumber = $_POST['fphoneNumber'];
+                $fdescription = $_POST['fdescription'];
+
+                date_default_timezone_set("Asia/Kuala_Lumpur");
+                $createdAt =  date('Y-m-d H:i:s');
+                $updatedAt =  date('Y-m-d H:i:s');
+
+                $queryFeedbacksCount = "SELECT max(feedback_id) FROM feedback";
+                $ResultFeedbacksCount = mysqli_query($con, $queryFeedbacksCount);
+                while ($row = mysqli_fetch_array($ResultFeedbacksCount)) {
+                    $fid = $row["max(feedback_id)"] + 1;
+                }
+
+                $queryAddFeedback = "INSERT INTO feedback VALUES ('$fid', '$fname', '$femail', '$fphoneNumber', '$fdescription', '$createdAt', '$updatedAt')";
+                $resultAddFeedback = mysqli_query($con, $queryAddFeedback);
+
+                mysqli_close($con);
+
+                echo '<span style="font-size: 18px;">Thank you! Your feedback has been submitted!</span>';
+            }
+                else{
+                    echo '<span style="font-size: 18px;">If you have any issues or questions regarding your purchase from our site, please contact us with the form below. Thanks!</span>';
+                }
+
+                
+
+                ?>
             </div>
-            <form action ="contactus_add.php" method="POST">
+            <form action="contactus.php" method="POST">
                 <table style="margin-left: auto; margin-right: auto;">
                     <tr>
                         <td style="padding-left: 5px;">Name</td>

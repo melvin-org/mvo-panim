@@ -9,6 +9,7 @@ if (isset($_POST['add'])) {
     date_default_timezone_set("Asia/Kuala_Lumpur");
     $createdAt =  date('Y-m-d H:i:s');
     $updatedAt =  date('Y-m-d H:i:s');
+    $homepage = 0;
 
     $queryCount = "select max(collection_id) from collections";
     $resultCount = mysqli_query($con, $queryCount);
@@ -27,7 +28,7 @@ if (isset($_POST['add'])) {
         $new_filename = '';
     }
 
-    $queryAdd = "INSERT INTO collections values ('$cid', '$collectionname', '$collectiondesc', '$new_filename', '$createdAt','$updatedAt')";
+    $queryAdd = "INSERT INTO collections values ('$cid', '$collectionname', '$collectiondesc', '$new_filename','$homepage', '$createdAt','$updatedAt')";
     $resultAdd = mysqli_query($con, $queryAdd);
 
     if ($resultAdd > 0) {

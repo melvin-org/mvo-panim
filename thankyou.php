@@ -236,7 +236,7 @@ $resultfrCart = mysqli_query($con, $queryfrCart);
         <!-- START BELOW HERE -->
 
         <!-- receipt -->
-
+        <h3 class="text-center">Your Invoice</h3>
 
         <div class="receipt-content" id= "printDiv">
             <div class="container bootstrap snippets bootdey">
@@ -328,9 +328,20 @@ $resultfrCart = mysqli_query($con, $queryfrCart);
                                     <div class="field" style="margin-left:750px;">
                                         Subtotal <span><?php echo "RM " . $_SESSION['subtotal']; ?></span>
                                     </div>
+                                    <?php
+                                    if(isset($_SESSION['discountAmount'])){
+
+                                    ?>
+                                    <div class="field" style="margin-left:745px;">
+                                        Discount <span>-<?php echo "RM " . $_SESSION['discountAmount']; ?></span>
+                                    </div>
+                                    <?php
+                                    }
+                                    ?>
                                     <div class="field" style="margin-left:750px;">
                                         Shipping <span><?php echo "RM " . $_SESSION['deliveryFee']; ?></span>
                                     </div>
+                                    
                                     <div class="field grand-total" style="margin-left: 750px;">
                                         Total <span style="padding-left: 19px;"><?php echo "RM " . $totalpaid; ?></span>
                                     </div>
@@ -406,6 +417,10 @@ document.getElementById("doPrint").addEventListener("click", function() {
      window.print();
      document.body.innerHTML = originalContents;
 });
+
+$(window).on('load', function() {
+        $('#tqpopup').modal('show');
+    });
 
 </script>
 

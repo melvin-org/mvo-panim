@@ -193,7 +193,7 @@ include 'header.php';
                     <div style="width: 13%; padding-top: 20px;">
                         <a href="product_list.php">Continue Shopping</span></a>
                     </div>
-                    <div style="width: 12%; font-size: 20px;">
+                    <div style="width: 17%; font-size: 20px;">
                         <form action="checkout.php" method="post">
                             <input type="hidden" id="totalFromCart" name="totalFromCart" value="<?php echo $subtotal ?>">
                             <button class="checkout-button">
