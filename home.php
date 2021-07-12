@@ -2,10 +2,10 @@
 <html lang="en">
 <?php
 session_start();
-include 'header.php'; 
+include 'header.php';
 
 $con = mysqli_connect("localhost", "admin", null, "pganim");
-$queryCollection = "SELECT * FROM collections WHERE homepage = 1"; 
+$queryCollection = "SELECT * FROM collections WHERE homepage = 1";
 $collectionResult = mysqli_query($con, $queryCollection);
 
 
@@ -30,7 +30,7 @@ $collectionResult = mysqli_query($con, $queryCollection);
       <div class="container">
         <h1><span>Poggo Cat</span></h1>
         <p>Browse our new merchandise arrivals!</p>
-        <a href = "product_list.php"><button>Shop Now</button></a>
+        <a href="product_list.php"><button>Shop Now</button></a>
       </div>
     </section>
     <br>
@@ -40,18 +40,21 @@ $collectionResult = mysqli_query($con, $queryCollection);
         <hr class="mx-auto">
         <p>Get excited with our collections.</p>
       </div>
-      <div class="row p-0 m-0">
-      <?php 
+      <div class="row p-0 m-0 d-flex justify-content-center">
+        <?php
+        $i = 0;
         while ($collection = mysqli_fetch_array($collectionResult)) {
           echo '<div class="f1 col-lg-4 col-md-12 col-12 p-30">';
-          echo '<a href="collection_list.php?colid='.$collection["collection_id"].'"><img class="img-fluid" src="images/'.$collection["image"].'" alt="" height="1024" width="1024">';
+          echo '<a href="collection_list.php?colid=' . $collection["collection_id"] . '"><img class="img-fluid" src="images/' . $collection["image"] . '" alt="" height="1024" width="1024">';
           echo '<div class="details">';
           echo '<button>SHOP NOW</button>';
           echo '</div></a></div>';
+          $i++;
+          if ($i >= 3) break;
         }
 
-      ?>
-       
+        ?>
+
       </div>
     </section>
 
@@ -61,20 +64,21 @@ $collectionResult = mysqli_query($con, $queryCollection);
         <hr class="mx-auto">
         <p>Get the latest and exclusive Poggo merchandise release.</p>
       </div>
-      <div class="row mx-auto container-fluid">
+      <div class="row mx-auto container-fluid d-flex justify-content-center">
         <?php
-            $queryIsNew = "SELECT * FROM products WHERE isNew = 1";
-            $resultIsNew = mysqli_query($con, $queryIsNew);
-
-            while($row = mysqli_fetch_array($resultIsNew)){
-              echo '<div class="product text-center col-lg-3 col-md-4 col-12">';
-              echo '<a href="product_details.php?pid='.$row["product_id"].'"><img class="img-fluid mb-3" src="images/'.$row['img'].'"  height="602" width="602" alt="product picture">';
-              echo '<h5 class="name">'.$row['product_name'].'</h5>';
-              echo '<h4 class="price">RM '.$row['price'].'</h4>';
-              echo '<button class="addtoCart">Shop Now</button>';
-              echo '</a></div>';
-          
-            }
+        $queryIsNew = "SELECT * FROM products WHERE isNew = 1";
+        $resultIsNew = mysqli_query($con, $queryIsNew);
+        $i = 0;
+        while ($row = mysqli_fetch_array($resultIsNew)) {
+          echo '<div class="product text-center col-lg-3 col-md-4 col-12">';
+          echo '<a href="product_details.php?pid=' . $row["product_id"] . '"><img class="img-fluid mb-3" src="images/' . $row['img'] . '"  height="602" width="602" alt="product picture">';
+          echo '<h5 class="name">' . $row['product_name'] . '</h5>';
+          echo '<h4 class="price">RM ' . $row['price'] . '</h4>';
+          echo '<button class="addtoCart">Shop Now</button>';
+          echo '</a></div>';
+          $i++;
+          if ($i >= 4) break;
+        }
         ?>
 
       </div>

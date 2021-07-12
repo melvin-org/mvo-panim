@@ -73,7 +73,17 @@ $resultAddPayment = mysqli_query($con, $queryAddPayment);
 $queryAddOrders = "INSERT INTO orders values ('$oid', '$cust_id', '$totalpaid', '$orderstatus','$createdAt', '$updatedAt')";
 $resultAddOrders = mysqli_query($con, $queryAddOrders);
 
+// insert to delivery table
+$queryCountDelivery = "select max(delivery_id) from delivery";
+$resultCountDelivery = mysqli_query($con, $queryCountDelivery);
+while ($row = mysqli_fetch_array($resultCountDelivery)) {
+    $deliveryid = $row["max(delivery_id)"] + 1;
+}
 
+$deliveryFee = $_SESSION['deliveryFee'];
+
+$queryAddDelivery = "INSERT INTO delivery values ('$deliveryid', '$oid', 'N/A', '$deliveryFee','N/A', '$createdAt', '$updatedAt')";
+$resultAddDelivery = mysqli_query($con, $queryAddDelivery);
 
 
 mysqli_close($con);

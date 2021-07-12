@@ -236,7 +236,7 @@ $resultfrCart = mysqli_query($con, $queryfrCart);
         <!-- START BELOW HERE -->
 
         <!-- receipt -->
-
+        <h3 class="text-center">Your Invoice</h3>
 
         <div class="receipt-content" id= "printDiv">
             <div class="container bootstrap snippets bootdey">
@@ -417,6 +417,10 @@ document.getElementById("doPrint").addEventListener("click", function() {
      window.print();
      document.body.innerHTML = originalContents;
 });
+
+$(window).on('load', function() {
+        $('#tqpopup').modal('show');
+    });
 
 </script>
 

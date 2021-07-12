@@ -101,13 +101,13 @@ include 'includes/orderdetails_modal.php';
                             <td style='width:120px'>" . $payment['txn_id'] . "</td>
                             <td style='width:120px'>" . $row['order_status'] . "</td>";
 
-                                    if (!isset($delivery)) {
+                                    if ($delivery['tracking_no'] == 'N/A') {
                                         echo "<td style='width:120px'>N/A</td>
                                         </tr>
                                         ";
                                     } else {
 
-                                        echo "<td style='width:120px'>" . $delivery['tracking_no'] . "</td>
+                                        echo "<td style='width:120px'><a target='_blank' href='https://www.jtexpress.my/track.php?awbs=" . $delivery['tracking_no'] . "'>" . $delivery['tracking_no'] . "</a></td>
                                         </tr>
                                         ";
                                     }
