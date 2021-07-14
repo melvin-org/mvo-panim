@@ -34,7 +34,13 @@ $con = mysqli_connect("localhost", "admin", null, "pganim");
               <div class="box-header with-border">
 
                 <div class="pull-left">
-                  <a href="#" class="btn btn-primary btn-sm btn-flat" id="adddiscount"><i class="fa fa-plus"></i> New</a>
+
+                <?php
+                      if($_SESSION['role'] == 'Manager'){
+                      echo "<a href='#' class='btn btn-primary btn-sm btn-flat' id='adddiscount' ><i class='fa fa-plus'></i> New</a>";
+                      }
+                      ?>
+
                 </div>
                 <div class="pull-right">
                   <input type="search" onkeyup="searchFunction()" id="search" class="form-control" name="search" placeholder="Search">
@@ -48,7 +54,11 @@ $con = mysqli_connect("localhost", "admin", null, "pganim");
                       <th>Discount Percentage</th>
                       <th>Min Spend</th>
                       <th>Validity</th>
-                      <th>Tools</th>
+                      <?php
+                      if($_SESSION['role'] == 'Manager'){
+                      echo "<th>Tools</th>";
+                      }
+                      ?>
                     </thead>
                     <tbody>
                       <?php
@@ -73,14 +83,16 @@ $con = mysqli_connect("localhost", "admin", null, "pganim");
                             echo "
                             <tr>
                             <td style='width:150px'>" . $row['discount_code'] . "</td>
-                            <td>" . $row['discount_percentage'] . "</td>
+                            <td style='width:150px'>" . $row['discount_percentage'] . "</td>
                             <td style='width:100px'>" . $row['min_spend'] . "</td>
-                            <td style='width:100px'>" . $validity . "</td>
-                            <td style='width:150px'>
+                            <td style='width:100px'>" . $validity . "</td>";
+                            if($_SESSION['role'] == 'Manager'){
+                            echo "<td style='width:150px'>
                             <a href ='discounts_edit.php?id=" . $row['discount_id'] . "'><button class='btn btn-success btn-sm edit btn-flat' data-id='" . $row['discount_id'] . "'><i class='fa fa-edit'></i> Edit</button></a>
                               <button onclick='deleteDiscount(" . $row['discount_id'] . ")' class='btn btn-danger btn-sm delete btn-flat' data-id='" . $row['discount_id'] . "'><i class='fa fa-trash'></i> Delete</button>
-                            </td>
-                           </tr>
+                            </td>";
+                            }
+                           echo "</tr>
                             ";
                           }
                         }

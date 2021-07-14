@@ -57,7 +57,7 @@ $con = mysqli_connect("localhost", "admin", null, "pganim");
 
                                 </div>
                                 <div class="icon">
-                                    <i class="fa fa-shopping-cart"></i>
+                                    <i class="fa fa-users"></i>
                                 </div>
                                 <a href="users.php" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                             </div>

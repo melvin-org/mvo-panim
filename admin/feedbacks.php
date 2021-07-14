@@ -43,7 +43,13 @@ $con = mysqli_connect("localhost", "admin", null, "pganim");
                                             <th>Email</th>
                                             <th>Phone No</th>
                                             <th>Description</th>
+                                            <?php 
+                                            if($_SESSION['role'] == 'Manager'){
+                                            ?>
                                             <th>Tools</th>
+                                            <?php
+                                            }
+                                            ?>
                                         </thead>
                                         <tbody>
                                             <?php

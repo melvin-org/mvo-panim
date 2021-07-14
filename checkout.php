@@ -217,6 +217,7 @@ include 'includes/addressedit_modal.php';
 
                     if (isset($discount) && $discountAvailability != 'invalid' && $discountMinSpend != 'invalid') {
                         $discountAmount = $subtotal * $discount["discount_percentage"] / 100;
+                        $_SESSION['discountAmount'] = $discountAmount;
                         $total = $total - $discountAmount;
                         echo '<div class="row">';
                         echo '<div class="col-9">';
