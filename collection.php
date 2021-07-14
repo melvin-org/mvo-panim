@@ -41,7 +41,7 @@ include 'header.php';
         <!-- START BELOW HERE -->
         <div class="quicksand-font" style="width: 100%;">
             <div style="width: 100%; text-align: center; padding-top: 30px; padding-bottom: 30px;">
-                <span style="font-size: 24px;">Collections</span>
+                <span style="font-size: 24px;">All Collections</span>
             </div>
 
             <div style="width: 100%; padding-left: 30px;">

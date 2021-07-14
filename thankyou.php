@@ -413,6 +413,9 @@ $resultfrCart = mysqli_query($con, $queryfrCart);
         $('#tqpopup').modal('show');
     });
 
+$(window).on('load', function() {
+        $('#tqpopup').modal('show');
+    });
 document.getElementById("doPrint").addEventListener("click", function() {
      var printContents = document.getElementById('printDiv').innerHTML;
      var originalContents = document.body.innerHTML;
@@ -420,7 +423,6 @@ document.getElementById("doPrint").addEventListener("click", function() {
      window.print();
      document.body.innerHTML = originalContents;
 });
-
 
 
 </script>

@@ -47,7 +47,7 @@ include 'header.php';
 
                 mysqli_close($con);
 
-                echo '<span style="font-size: 18px;">Thank you! Your feedback has been submitted!</span>';
+                echo '<span style="font-size: 24px; color: #4BB543; ">Thank you! Your feedback has been submitted!</span>';
             }
                 else{
                     echo '<span style="font-size: 18px;">If you have any issues or questions regarding your purchase from our site, please contact us with the form below. Thanks!</span>';
