@@ -42,7 +42,7 @@ $result = mysqli_query($con, $query);
                 if (mysqli_num_rows($result) == 0) {
                     echo "<p>No Discount Codes Found.</p>";
                 } else {
-                    echo "<br><br><h4>Collection Information: </h4><br> <br>";
+                    echo "<br><br><h4>Discount Code Information: </h4><br> <br>";
                     echo "<form class='form-horizontal' id='discountsupdate' action='discounts_update.php' method='POST' enctype='multipart/form-data'>";
                     while ($row = mysqli_fetch_array($result)) {                        
 

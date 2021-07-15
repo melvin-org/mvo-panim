@@ -58,7 +58,7 @@ $result = mysqli_query($con, $query);
 
                         echo "<div class='form-group'>";
                         echo "<label for='email' class='col-sm-1 control-label'>Email: </label><div class='col-sm-3'><input type='text' class='form-control' id ='email' name='email' value='" . $row['email'] . "'></div>";
-                        echo "<label for='password' class='col-sm-1 control-label'>Password: </label><div class='col-sm-3'><input type='password' class='form-control' id ='password' name='password'></div>";
+                        echo "<label for='password' class='col-sm-1 control-label'>Password: </label><div class='col-sm-3'><input type='password' class='form-control' id ='password' name='password' required></div>";
                         echo "</div>";
 
                         echo "<div class='form-group'>";

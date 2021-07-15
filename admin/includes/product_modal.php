@@ -108,7 +108,7 @@
                 <div class="form-group">
                     <label for="pdesc" class="col-sm-1 control-label">Description</label>
                     <div class="col-sm-12">
-                        <textarea name="pdesc" rows="10" cols="133" required></textarea>
+                        <textarea name="pdesc" rows="10" cols="130" required></textarea>
                     </div>
 
                 </div>

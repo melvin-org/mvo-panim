@@ -35,11 +35,11 @@ $con = mysqli_connect("localhost", "admin", null, "pganim");
 
                 <div class="pull-left">
 
-                  <?php
-                  if ($_SESSION['role'] == 'Manager') {
-                    echo "<a href='#' class='btn btn-primary btn-sm btn-flat' id='adddiscount' ><i class='fa fa-plus'></i> New</a>";
-                  }
-                  ?>
+                <?php
+                      if($_SESSION['role'] == 'Manager'){
+                      echo "<a href='#' class='btn btn-primary btn-sm btn-flat' id='adddiscount' ><i class='fa fa-plus'></i> New</a>";
+                      }
+                      ?>
 
                 </div>
                 <div class="pull-right">
@@ -55,8 +55,8 @@ $con = mysqli_connect("localhost", "admin", null, "pganim");
                       <th>Min Spend</th>
                       <th>Validity</th>
                       <?php
-                      if ($_SESSION['role'] == 'Manager') {
-                        echo "<th>Tools</th>";
+                      if($_SESSION['role'] == 'Manager'){
+                      echo "<th>Tools</th>";
                       }
                       ?>
                     </thead>
@@ -85,11 +85,14 @@ $con = mysqli_connect("localhost", "admin", null, "pganim");
                             <td style='width:150px'>" . $row['discount_percentage'] . "</td>
                             <td style='width:100px'>" . $row['min_spend'] . "</td>
                             <td style='width:100px'>" . $validity . "</td>";
-                          if ($_SESSION['role'] == 'Manager') {
+                            if($_SESSION['role'] == 'Manager'){
                             echo "<td style='width:150px'>
                             <a href ='discounts_edit.php?id=" . $row['discount_id'] . "'><button class='btn btn-success btn-sm edit btn-flat' data-id='" . $row['discount_id'] . "'><i class='fa fa-edit'></i> Edit</button></a>
                               <button onclick='deleteDiscount(" . $row['discount_id'] . ")' class='btn btn-danger btn-sm delete btn-flat' data-id='" . $row['discount_id'] . "'><i class='fa fa-trash'></i> Delete</button>
                             </td>";
+                            }
+                           echo "</tr>
+                            ";
                           }
                           echo "</tr>
                             ";

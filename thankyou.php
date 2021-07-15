@@ -409,6 +409,9 @@ $resultfrCart = mysqli_query($con, $queryfrCart);
 
 
 <script>
+    $(window).on('load', function() {
+        $('#tqpopup').modal('show');
+    });
 
 $(window).on('load', function() {
         $('#tqpopup').modal('show');
